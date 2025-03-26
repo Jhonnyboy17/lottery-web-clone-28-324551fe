@@ -5,7 +5,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, ArrowLeft, CalendarDays, ArrowRight, FileText, ChevronRight, Sun, Moon } from "lucide-react";
+import { Search, ArrowLeft, CalendarDays, ArrowRight, FileText, ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -47,13 +47,6 @@ interface LuckyDayResult {
   bonusNumber: string;
   lottoMillion1: string[];
   lottoMillion2: string[];
-}
-
-interface LottoResult {
-  date: string;
-  displayDate: string;
-  time: "Midday" | "Evening";
-  numbers: string[];
 }
 
 const megaMillionsHistory: MegaMillionsResult[] = [
@@ -630,6 +623,56 @@ const powerballHistory: PowerballResult[] = [
   }
 ];
 
+const gamesData: Game[] = [
+  {
+    id: 1,
+    name: "Mega Millions",
+    logo: "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png",
+    date: "Friday, Mar 22, 2024",
+    numbers: ["15", "25", "31", "52", "67"],
+    specialNumbers: ["9"],
+    multiplier: "3X"
+  },
+  {
+    id: 2,
+    name: "Powerball",
+    logo: "/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png",
+    date: "Wednesday, Mar 20, 2024",
+    numbers: ["8", "11", "21", "49", "59"],
+    specialNumbers: ["15"],
+    multiplier: "2X"
+  },
+  {
+    id: 3,
+    name: "Lucky Day Lotto",
+    logo: "/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png",
+    date: "Segunda, Mar 24, 2024",
+    numbers: ["3", "24", "27", "34", "38"]
+  },
+  {
+    id: 4,
+    name: "Pick 4",
+    logo: "/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png",
+    date: "Sábado, Mar 22, 2024",
+    numbers: ["7", "0", "5", "3"],
+    specialNumbers: ["7"]
+  },
+  {
+    id: 5,
+    name: "Cash 5",
+    logo: "/lovable-uploads/c0b5f378-154f-476e-a51e-e9777bba8645.png",
+    date: "Sábado, Mar 22, 2024",
+    numbers: ["6", "12", "13", "20", "29"]
+  },
+  {
+    id: 6,
+    name: "Fast Play",
+    logo: "/lovable-uploads/a02651ec-8efc-429a-8231-5ae52f5c4af5.png",
+    date: "Todos os dias",
+    numbers: ["02", "14", "26", "33", "40"]
+  },
+];
+
 const luckyDayHistory: LuckyDayResult[] = [
   {
     drawDate: "03/24/2025",
@@ -723,706 +766,655 @@ const luckyDayHistory: LuckyDayResult[] = [
   }
 ];
 
-const lottoHistory: LottoResult[] = [
-  {
-    date: "25/03/2025",
-    displayDate: "25 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "18", "21", "27", "30"]
-  },
-  {
-    date: "25/03/2025",
-    displayDate: "25 de março de 2025",
-    time: "Evening",
-    numbers: ["9", "18", "26", "29", "33"]
-  },
-  {
-    date: "24/03/2025",
-    displayDate: "24 de março de 2025",
-    time: "Midday",
-    numbers: ["3", "5", "36", "38", "43"]
-  },
-  {
-    date: "24/03/2025",
-    displayDate: "24 de março de 2025",
-    time: "Evening",
-    numbers: ["7", "22", "32", "39", "42"]
-  },
-  {
-    date: "23/03/2025",
-    displayDate: "23 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "21", "23", "24", "37"]
-  },
-  {
-    date: "23/03/2025",
-    displayDate: "23 de março de 2025",
-    time: "Evening",
-    numbers: ["23", "27", "31", "33", "43"]
-  },
-  {
-    date: "22/03/2025",
-    displayDate: "22 de março de 2025",
-    time: "Midday",
-    numbers: ["23", "26", "28", "40", "42"]
-  },
-  {
-    date: "22/03/2025",
-    displayDate: "22 de março de 2025",
-    time: "Evening",
-    numbers: ["19", "26", "38", "40", "41"]
-  },
-  {
-    date: "21/03/2025",
-    displayDate: "21 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "12", "37", "42", "44"]
-  },
-  {
-    date: "21/03/2025",
-    displayDate: "21 de março de 2025",
-    time: "Evening",
-    numbers: ["3", "24", "27", "34", "38"]
-  },
-  {
-    date: "20/03/2025",
-    displayDate: "20 de março de 2025",
-    time: "Midday",
-    numbers: ["4", "30", "32", "33", "43"]
-  },
-  {
-    date: "20/03/2025",
-    displayDate: "20 de março de 2025",
-    time: "Evening",
-    numbers: ["7", "10", "14", "38", "40"]
-  },
-  {
-    date: "19/03/2025",
-    displayDate: "19 de março de 2025",
-    time: "Midday",
-    numbers: ["21", "24", "30", "36", "42"]
-  },
-  {
-    date: "19/03/2025",
-    displayDate: "19 de março de 2025",
-    time: "Evening",
-    numbers: ["10", "30", "34", "39", "44"]
-  },
-  {
-    date: "18/03/2025",
-    displayDate: "18 de março de 2025",
-    time: "Midday",
-    numbers: ["4", "22", "29", "34", "39"]
-  },
-  {
-    date: "18/03/2025",
-    displayDate: "18 de março de 2025",
-    time: "Evening",
-    numbers: ["4", "14", "23", "30", "32"]
-  },
-  {
-    date: "17/03/2025",
-    displayDate: "17 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "22", "25", "32", "33"]
-  },
-  {
-    date: "17/03/2025",
-    displayDate: "17 de março de 2025",
-    time: "Evening",
-    numbers: ["5", "27", "32", "40", "42"]
-  },
-  {
-    date: "16/03/2025",
-    displayDate: "16 de março de 2025",
-    time: "Midday",
-    numbers: ["21", "27", "30", "41", "43"]
-  },
-  {
-    date: "16/03/2025",
-    displayDate: "16 de março de 2025",
-    time: "Evening",
-    numbers: ["8", "11", "19", "20", "21"]
-  },
-  {
-    date: "15/03/2025",
-    displayDate: "15 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "15", "23", "26", "38"]
-  },
-  {
-    date: "15/03/2025",
-    displayDate: "15 de março de 2025",
-    time: "Evening",
-    numbers: ["1", "16", "17", "31", "45"]
-  },
-  {
-    date: "14/03/2025",
-    displayDate: "14 de março de 2025",
-    time: "Midday",
-    numbers: ["2", "4", "9", "12", "28"]
-  },
-  {
-    date: "14/03/2025",
-    displayDate: "14 de março de 2025",
-    time: "Evening",
-    numbers: ["1", "9", "10", "19", "29"]
-  },
-  {
-    date: "13/03/2025",
-    displayDate: "13 de março de 2025",
-    time: "Midday",
-    numbers: ["4", "7", "13", "31", "43"]
-  },
-  {
-    date: "13/03/2025",
-    displayDate: "13 de março de 2025",
-    time: "Evening",
-    numbers: ["5", "8", "12", "26", "35"]
-  },
-  {
-    date: "12/03/2025",
-    displayDate: "12 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "15", "23", "31", "33"]
-  },
-  {
-    date: "12/03/2025",
-    displayDate: "12 de março de 2025",
-    time: "Evening",
-    numbers: ["4", "7", "10", "30", "45"]
-  },
-  {
-    date: "11/03/2025",
-    displayDate: "11 de março de 2025",
-    time: "Midday",
-    numbers: ["2", "12", "14", "20", "43"]
-  },
-  {
-    date: "11/03/2025",
-    displayDate: "11 de março de 2025",
-    time: "Evening",
-    numbers: ["15", "21", "24", "35", "39"]
-  },
-  {
-    date: "10/03/2025",
-    displayDate: "10 de março de 2025",
-    time: "Midday",
-    numbers: ["5", "13", "17", "20", "32"]
-  },
-  {
-    date: "10/03/2025",
-    displayDate: "10 de março de 2025",
-    time: "Evening",
-    numbers: ["6", "18", "26", "27", "33"]
-  },
-  {
-    date: "09/03/2025",
-    displayDate: "9 de março de 2025",
-    time: "Midday",
-    numbers: ["10", "16", "21", "28", "37"]
-  },
-  {
-    date: "09/03/2025",
-    displayDate: "9 de março de 2025",
-    time: "Evening",
-    numbers: ["9", "10", "16", "24", "27"]
-  },
-  {
-    date: "08/03/2025",
-    displayDate: "8 de março de 2025",
-    time: "Midday",
-    numbers: ["8", "27", "29", "35", "37"]
-  },
-  {
-    date: "08/03/2025",
-    displayDate: "8 de março de 2025",
-    time: "Evening",
-    numbers: ["2", "10", "11", "12", "20"]
-  },
-  {
-    date: "07/03/2025",
-    displayDate: "7 de março de 2025",
-    time: "Midday",
-    numbers: ["17", "28", "39", "43", "44"]
-  },
-  {
-    date: "07/03/2025",
-    displayDate: "7 de março de 2025",
-    time: "Evening",
-    numbers: ["15", "24", "31", "32", "40"]
-  },
-  {
-    date: "06/03/2025",
-    displayDate: "6 de março de 2025",
-    time: "Midday",
-    numbers: ["33", "36", "41", "42", "45"]
-  },
-  {
-    date: "06/03/2025",
-    displayDate: "6 de março de 2025",
-    time: "Evening",
-    numbers: ["10", "21", "33", "35", "41"]
-  },
-  {
-    date: "05/03/2025",
-    displayDate: "5 de março de 2025",
-    time: "Midday",
-    numbers: ["15", "32", "34", "35", "44"]
-  },
-  {
-    date: "05/03/2025",
-    displayDate: "5 de março de 2025",
-    time: "Evening",
-    numbers: ["15", "18", "19", "24", "34"]
-  },
-  {
-    date: "04/03/2025",
-    displayDate: "4 de março de 2025",
-    time: "Midday",
-    numbers: ["10", "11", "20", "27", "36"]
-  },
-  {
-    date: "04/03/2025",
-    displayDate: "4 de março de 2025",
-    time: "Evening",
-    numbers: ["2", "6", "17", "19", "25"]
-  },
-  {
-    date: "03/03/2025",
-    displayDate: "3 de março de 2025",
-    time: "Midday",
-    numbers: ["3", "4", "6", "20", "33"]
-  },
-  {
-    date: "03/03/2025",
-    displayDate: "3 de março de 2025",
-    time: "Evening",
-    numbers: ["1", "2", "5", "10", "23"]
-  },
-  {
-    date: "02/03/2025",
-    displayDate: "2 de março de 2025",
-    time: "Midday",
-    numbers: ["7", "9", "14", "16", "22"]
-  },
-  {
-    date: "02/03/2025",
-    displayDate: "2 de março de 2025",
-    time: "Evening",
-    numbers: ["8", "11", "13", "18", "21"]
-  },
-  {
-    date: "01/03/2025",
-    displayDate: "1 de março de 2025",
-    time: "Midday",
-    numbers: ["4", "5", "9", "12", "15"]
-  },
-  {
-    date: "01/03/2025",
-    displayDate: "1 de março de 2025",
-    time: "Evening",
-    numbers: ["3", "7", "11", "14", "17"]
-  },
-  {
-    date: "28/02/2025",
-    displayDate: "28 de fevereiro de 2025",
-    time: "Midday",
-    numbers: ["2", "8", "10", "13", "19"]
-  },
-  {
-    date: "28/02/2025",
-    displayDate: "28 de fevereiro de 2025",
-    time: "Evening",
-    numbers: ["1", "4", "6", "9", "12"]
-  }
-];
-
 const ResultsHub = () => {
-  const [activeTab, setActiveTab] = useState("mega-millions");
+  const [activeTab, setActiveTab] = useState("all-games");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const getTabResults = () => {
-    switch (activeTab) {
-      case "mega-millions":
-        return megaMillionsHistory.filter(result => 
-          result.numbers.join(" ").includes(searchTerm) || 
-          result.drawDate.includes(searchTerm) ||
-          result.megaBall.includes(searchTerm)
-        );
-      case "powerball":
-        return powerballHistory.filter(result => 
-          result.numbers.join(" ").includes(searchTerm) || 
-          result.drawDate.includes(searchTerm) ||
-          result.powerball.includes(searchTerm)
-        );
-      case "lucky-day":
-        return luckyDayHistory.filter(result => 
-          result.numbers.join(" ").includes(searchTerm) || 
-          result.drawDate.includes(searchTerm) ||
-          result.bonusNumber.includes(searchTerm)
-        );
-      case "lotto":
-        return lottoHistory.filter(result => 
-          result.numbers.join(" ").includes(searchTerm) || 
-          result.date.includes(searchTerm)
-        );
+  const [megaMillionsPage, setMegaMillionsPage] = useState(1);
+  const [powerballPage, setPowerballPage] = useState(1);
+  const [luckyDayPage, setLuckyDayPage] = useState(1);
+  
+  const gamesPerPage = 5;
+  const megaMillionsResultsPerPage = 5;
+  const powerballResultsPerPage = 10;
+  const luckyDayResultsPerPage = 5;
+  
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const currentGames = gamesData.slice(indexOfFirstGame, indexOfLastGame);
+  
+  const indexOfLastMegaMillionsResult = megaMillionsPage * megaMillionsResultsPerPage;
+  const indexOfFirstMegaMillionsResult = indexOfLastMegaMillionsResult - megaMillionsResultsPerPage;
+  const currentMegaMillionsResults = megaMillionsHistory.slice(
+    indexOfFirstMegaMillionsResult, 
+    indexOfLastMegaMillionsResult
+  );
+  
+  const indexOfLastPowerballResult = powerballPage * powerballResultsPerPage;
+  const indexOfFirstPowerballResult = indexOfLastPowerballResult - powerballResultsPerPage;
+  const currentPowerballResults = powerballHistory.slice(
+    indexOfFirstPowerballResult, 
+    indexOfLastPowerballResult
+  );
+  
+  const indexOfLastLuckyDayResult = luckyDayPage * luckyDayResultsPerPage;
+  const indexOfFirstLuckyDayResult = indexOfLastLuckyDayResult - luckyDayResultsPerPage;
+  const currentLuckyDayResults = luckyDayHistory.slice(
+    indexOfFirstLuckyDayResult, 
+    indexOfLastLuckyDayResult
+  );
+  
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginateMegaMillions = (pageNumber: number) => setMegaMillionsPage(pageNumber);
+  const paginatePowerball = (pageNumber: number) => setPowerballPage(pageNumber);
+  const paginateLuckyDay = (pageNumber: number) => setLuckyDayPage(pageNumber);
+  
+  useEffect(() => {
+    if (activeTab === "mega-millions") {
+      setMegaMillionsPage(1);
+    } else if (activeTab === "powerball") {
+      setPowerballPage(1);
+    } else if (activeTab === "lucky-day") {
+      setLuckyDayPage(1);
+    } else if (activeTab === "all-games") {
+      setCurrentPage(1);
+    }
+  }, [activeTab]);
+  
+  const getGameColor = (gameName: string) => {
+    switch (gameName) {
+      case "Mega Millions":
+        return "bg-blue-500";
+      case "Powerball":
+        return "bg-[#ff5247]";
+      case "Lucky Day Lotto":
+        return "bg-[#8CD444]";
+      case "Pick 4":
+        return "bg-[#00ccc6]";
+      case "Cash 5":
+      case "Fast Play":
+        return "bg-[#ffa039]";
       default:
-        return [];
+        return "bg-blue-500";
     }
-  };
-
-  const paginatedResults = () => {
-    const results = getTabResults();
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return results.slice(startIndex, endIndex);
-  };
-
-  const totalPages = Math.ceil(getTabResults().length / itemsPerPage);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    setCurrentPage(1);
-  };
-
-  const renderPageNumbers = () => {
-    const pages = [];
-    const maxVisiblePages = 5;
-    const halfVisible = Math.floor(maxVisiblePages / 2);
-    
-    let startPage = Math.max(1, currentPage - halfVisible);
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
-    
-    if (startPage > 1) {
-      pages.push(
-        <PaginationItem key="first">
-          <PaginationLink onClick={() => handlePageChange(1)}>1</PaginationLink>
-        </PaginationItem>
-      );
-      if (startPage > 2) {
-        pages.push(
-          <PaginationItem key="ellipsis-start">
-            <PaginationEllipsis />
-          </PaginationItem>
-        );
-      }
-    }
-    
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <PaginationItem key={i}>
-          <PaginationLink 
-            isActive={currentPage === i}
-            onClick={() => handlePageChange(i)}
-          >
-            {i}
-          </PaginationLink>
-        </PaginationItem>
-      );
-    }
-    
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        pages.push(
-          <PaginationItem key="ellipsis-end">
-            <PaginationEllipsis />
-          </PaginationItem>
-        );
-      }
-      pages.push(
-        <PaginationItem key="last">
-          <PaginationLink onClick={() => handlePageChange(totalPages)}>
-            {totalPages}
-          </PaginationLink>
-        </PaginationItem>
-      );
-    }
-    
-    return pages;
-  };
-
-  const renderMegaMillionsResults = () => {
-    const results = paginatedResults() as MegaMillionsResult[];
-    return (
-      <Table className="animate-fade-in">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="font-nunito font-bold">Data</TableHead>
-            <TableHead className="font-nunito font-bold">Dia da Semana</TableHead>
-            <TableHead className="font-nunito font-bold">Números</TableHead>
-            <TableHead className="font-nunito font-bold">Mega Ball</TableHead>
-            <TableHead className="font-nunito font-bold">Multiplicador</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {results.map((result, index) => (
-            <TableRow key={index}>
-              <TableCell>{result.displayDate}</TableCell>
-              <TableCell>{result.dayOfWeek}</TableCell>
-              <TableCell>
-                <div className="flex space-x-2">
-                  {result.numbers.map((num, idx) => (
-                    <span 
-                      key={idx} 
-                      className="number-ball w-8 h-8 rounded-full bg-lottery-pink text-white flex items-center justify-center text-sm font-semibold"
-                    >
-                      {num}
-                    </span>
-                  ))}
-                </div>
-              </TableCell>
-              <TableCell>
-                <span className="number-ball w-8 h-8 rounded-full bg-lottery-yellow text-black flex items-center justify-center text-sm font-semibold">
-                  {result.megaBall}
-                </span>
-              </TableCell>
-              <TableCell>{result.multiplier}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    );
-  };
-
-  const renderPowerballResults = () => {
-    const results = paginatedResults() as PowerballResult[];
-    return (
-      <Table className="animate-fade-in">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="font-nunito font-bold">Data</TableHead>
-            <TableHead className="font-nunito font-bold">Dia da Semana</TableHead>
-            <TableHead className="font-nunito font-bold">Números</TableHead>
-            <TableHead className="font-nunito font-bold">Powerball</TableHead>
-            <TableHead className="font-nunito font-bold">Multiplicador</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {results.map((result, index) => (
-            <TableRow key={index}>
-              <TableCell>{result.displayDate}</TableCell>
-              <TableCell>{result.dayOfWeek}</TableCell>
-              <TableCell>
-                <div className="flex space-x-2">
-                  {result.numbers.map((num, idx) => (
-                    <span 
-                      key={idx} 
-                      className="number-ball w-8 h-8 rounded-full bg-lottery-red text-white flex items-center justify-center text-sm font-semibold"
-                    >
-                      {num}
-                    </span>
-                  ))}
-                </div>
-              </TableCell>
-              <TableCell>
-                <span className="number-ball w-8 h-8 rounded-full bg-lottery-red text-white flex items-center justify-center text-sm font-semibold border-2 border-white">
-                  {result.powerball}
-                </span>
-              </TableCell>
-              <TableCell>{result.multiplier}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    );
-  };
-
-  const renderLuckyDayResults = () => {
-    const results = paginatedResults() as LuckyDayResult[];
-    return (
-      <Table className="animate-fade-in">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="font-nunito font-bold">Data</TableHead>
-            <TableHead className="font-nunito font-bold">Dia da Semana</TableHead>
-            <TableHead className="font-nunito font-bold">Números</TableHead>
-            <TableHead className="font-nunito font-bold">Número Bônus</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {results.map((result, index) => (
-            <TableRow key={index}>
-              <TableCell>{result.displayDate}</TableCell>
-              <TableCell>{result.dayOfWeek}</TableCell>
-              <TableCell>
-                <div className="flex space-x-2">
-                  {result.numbers.map((num, idx) => (
-                    <span 
-                      key={idx} 
-                      className="number-ball w-8 h-8 rounded-full bg-lottery-navy text-white flex items-center justify-center text-sm font-semibold"
-                    >
-                      {num}
-                    </span>
-                  ))}
-                </div>
-              </TableCell>
-              <TableCell>
-                <span className="number-ball w-8 h-8 rounded-full bg-lottery-yellow text-black flex items-center justify-center text-sm font-semibold">
-                  {result.bonusNumber}
-                </span>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    );
-  };
-
-  const renderLottoResults = () => {
-    const results = paginatedResults() as LottoResult[];
-    return (
-      <Table className="animate-fade-in">
-        <TableHeader>
-          <TableRow>
-            <TableHead className="font-nunito font-bold">Data</TableHead>
-            <TableHead className="font-nunito font-bold">Período</TableHead>
-            <TableHead className="font-nunito font-bold">Números</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {results.map((result, index) => (
-            <TableRow key={index}>
-              <TableCell>{result.displayDate}</TableCell>
-              <TableCell>
-                <div className="flex items-center">
-                  {result.time === "Midday" ? (
-                    <><Sun className="h-4 w-4 mr-1 text-yellow-500" /> Meio-dia</>
-                  ) : (
-                    <><Moon className="h-4 w-4 mr-1 text-blue-500" /> Noite</>
-                  )}
-                </div>
-              </TableCell>
-              <TableCell>
-                <div className="flex space-x-2">
-                  {result.numbers.map((num, idx) => (
-                    <span 
-                      key={idx} 
-                      className="number-ball w-8 h-8 rounded-full bg-lottery-purple text-white flex items-center justify-center text-sm font-semibold"
-                    >
-                      {num}
-                    </span>
-                  ))}
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    );
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <main className="flex-grow container mx-auto px-4 py-8">
-        <div className="space-y-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold font-nunito">Resultados das Loterias</h1>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
-              <input
-                type="text"
-                placeholder="Buscar resultados..."
-                className="pl-10 pr-4 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-primary"
-                value={searchTerm}
-                onChange={handleSearch}
-              />
-            </div>
-          </div>
-
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="w-full justify-start border-b rounded-none bg-transparent p-0 mb-6">
-              <TabsTrigger 
-                value="mega-millions" 
-                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
-              >
-                Mega Millions
-              </TabsTrigger>
-              <TabsTrigger 
-                value="powerball"
-                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
-              >
-                Powerball
-              </TabsTrigger>
-              <TabsTrigger 
-                value="lucky-day"
-                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
-              >
-                Lucky Day
-              </TabsTrigger>
-              <TabsTrigger 
-                value="lotto"
-                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
-              >
-                Lotto
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="mega-millions" className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  {renderMegaMillionsResults()}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="powerball" className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  {renderPowerballResults()}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="lucky-day" className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  {renderLuckyDayResults()}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="lotto" className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  {renderLottoResults()}
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-
-          {totalPages > 1 && (
-            <Pagination className="mt-8">
-              <PaginationContent>
-                {currentPage > 1 && (
-                  <PaginationItem>
-                    <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
-                  </PaginationItem>
-                )}
-                
-                {renderPageNumbers()}
-                
-                {currentPage < totalPages && (
-                  <PaginationItem>
-                    <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
-                  </PaginationItem>
-                )}
-              </PaginationContent>
-            </Pagination>
-          )}
+      
+      <main className="container mx-auto px-4 py-12 pt-28">
+        <div className="flex items-center mb-6">
+          <Button variant="ghost" className="text-gray-500 flex items-center mr-2">
+            <ArrowLeft className="mr-1 h-4 w-4" />
+            Back
+          </Button>
+          <h1 className="text-4xl font-bold text-lottery-navy">Results Hub</h1>
         </div>
+        
+        <Card className="mb-10">
+          <CardContent className="p-6">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+              <div className="relative w-full lg:w-1/3">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search games..."
+                  className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lottery-pink"
+                />
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button variant="outline" className="flex items-center justify-center">
+                  <CalendarDays className="mr-2 h-4 w-4" />
+                  Date Range
+                </Button>
+                <Button className="bg-lottery-pink hover:bg-lottery-pink/90 text-white">
+                  Apply Filters
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Tabs defaultValue="all-games" value={activeTab} onValueChange={setActiveTab} className="mb-10">
+          <TabsList className="grid grid-cols-3 md:grid-cols-6 lg:w-3/4 bg-gray-100 p-1">
+            <TabsTrigger value="all-games" className="data-[state=active]:bg-white data-[state=active]:text-lottery-navy">
+              All Games
+            </TabsTrigger>
+            <TabsTrigger value="mega-millions" className="data-[state=active]:bg-white data-[state=active]:text-lottery-navy">
+              Mega Millions
+            </TabsTrigger>
+            <TabsTrigger value="powerball" className="data-[state=active]:bg-white data-[state=active]:text-lottery-navy">
+              Powerball
+            </TabsTrigger>
+            <TabsTrigger value="lucky-day" className="data-[state=active]:bg-white data-[state=active]:text-lottery-navy">
+              Lucky Day
+            </TabsTrigger>
+            <TabsTrigger value="pick4" className="data-[state=active]:bg-white data-[state=active]:text-lottery-navy">
+              Pick 4
+            </TabsTrigger>
+            <TabsTrigger value="cash5" className="data-[state=active]:bg-white data-[state=active]:text-lottery-navy">
+              Cash 5
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="all-games" className="mt-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-lottery-navy">
+                    Draw Results - All Games
+                  </h3>
+                  <p className="text-gray-600">
+                    Results for all lottery games
+                  </p>
+                </div>
+                <div className="mt-4 md:mt-0 flex items-center">
+                  <Button variant="outline" className="flex items-center">
+                    <FileText className="mr-2 h-4 w-4" />
+                    Download PDF
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {currentGames.map((game, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                      <div className="flex items-center">
+                        <img src={game.logo} alt={game.name} className="h-10 w-auto mr-3" />
+                        <div>
+                          <h4 className="text-lg font-bold text-lottery-navy">{game.name}</h4>
+                          <p className="text-gray-600 text-sm">{game.date}</p>
+                        </div>
+                      </div>
+                      <Button variant="ghost" className="text-blue-600 p-0 h-auto hover:bg-transparent hover:text-blue-800 mt-2 md:mt-0">
+                        <ChevronRight className="h-5 w-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      {game.numbers.map((number, idx) => (
+                        <span 
+                          key={idx} 
+                          className={`${getGameColor(game.name)} w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm`}
+                        >
+                          {number}
+                        </span>
+                      ))}
+                      {game.specialNumbers?.map((number, idx) => (
+                        <span 
+                          key={`special-${idx}`} 
+                          className="bg-amber-400 w-9 h-9 rounded-full flex items-center justify-center text-black font-bold text-sm"
+                        >
+                          {number}
+                        </span>
+                      ))}
+                      {game.multiplier && (
+                        <span className="ml-2 text-sm font-medium">
+                          {game.multiplier}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <Pagination className="mt-6">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (currentPage > 1) paginate(currentPage - 1);
+                      }}
+                    />
+                  </PaginationItem>
+                  {Array.from({ length: Math.ceil(gamesData.length / gamesPerPage) }).map((_, index) => (
+                    <PaginationItem key={index}>
+                      <PaginationLink 
+                        href="#" 
+                        isActive={currentPage === index + 1}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          paginate(index + 1);
+                        }}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (currentPage < Math.ceil(gamesData.length / gamesPerPage)) {
+                          paginate(currentPage + 1);
+                        }
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+              
+              <div className="text-center mt-8 text-sm text-gray-500">
+                <p>Fonte: <a href="https://www.illinoislottery.com/results" className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Illinois Lottery</a></p>
+                <p className="mt-1">Última atualização: {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+              </div>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="mega-millions" className="mt-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-lottery-navy">
+                    Draw Results Mega Millions
+                  </h3>
+                  <p className="text-gray-600">
+                    Click for more details on the prize payouts
+                  </p>
+                </div>
+                <div className="mt-4 md:mt-0 flex items-center">
+                  <img 
+                    src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" 
+                    alt="Mega Millions Logo" 
+                    className="h-12 w-auto mr-4"
+                  />
+                  <Button variant="outline" className="flex items-center">
+                    <FileText className="mr-2 h-4 w-4" />
+                    Download PDF
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {currentMegaMillionsResults.map((result, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                      <div>
+                        <h4 className="text-lg font-bold text-lottery-navy">{result.dayOfWeek}</h4>
+                        <p className="text-gray-600 text-sm">{result.displayDate}</p>
+                      </div>
+                      <Button variant="ghost" className="text-blue-600 p-0 h-auto hover:bg-transparent hover:text-blue-800">
+                        <ChevronRight className="h-5 w-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      {result.numbers.map((number, idx) => (
+                        <span 
+                          key={idx} 
+                          className="bg-blue-900 w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                        >
+                          {number}
+                        </span>
+                      ))}
+                      <span className="bg-amber-400 w-9 h-9 rounded-full flex items-center justify-center text-black font-bold text-sm">
+                        {result.megaBall}
+                      </span>
+                      <span className="ml-2 text-sm">
+                        {result.multiplier}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <Pagination className="mt-6">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (megaMillionsPage > 1) paginateMegaMillions(megaMillionsPage - 1);
+                      }}
+                    />
+                  </PaginationItem>
+                  {Array.from({ length: Math.ceil(megaMillionsHistory.length / megaMillionsResultsPerPage) }).map((_, index) => (
+                    <PaginationItem key={index}>
+                      <PaginationLink 
+                        href="#" 
+                        isActive={megaMillionsPage === index + 1}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          paginateMegaMillions(index + 1);
+                        }}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (megaMillionsPage < Math.ceil(megaMillionsHistory.length / megaMillionsResultsPerPage)) {
+                          paginateMegaMillions(megaMillionsPage + 1);
+                        }
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+              
+              <div className="text-center mt-8 text-sm text-gray-500">
+                <p>Fonte: <a href="https://www.illinoislottery.com/dbg/results/megamillions" className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Illinois Lottery</a></p>
+                <p className="mt-1">Última atualização: {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+              </div>
+            </div>
+            
+            <Card className="bg-gray-50 border border-gray-200">
+              <CardContent className="p-6">
+                <h4 className="text-lg font-bold text-lottery-navy mb-3">Como Jogar na Mega Millions</h4>
+                <p className="text-gray-700 mb-4">
+                  O sorteio da Mega Millions ocorre todas as terças e sextas-feiras. Para jogar:
+                </p>
+                <ol className="list-decimal pl-5 space-y-2 text-gray-700">
+                  <li>Escolha 5 números de 1 a 70</li>
+                  <li>Escolha 1 número Mega Ball de 1 a 25</li>
+                  <li>Opcionalmente, adicione o Megaplier para multiplicar seus prêmios (exceto o jackpot)</li>
+                  <li>Cada jogo custa R$ 15</li>
+                </ol>
+                <div className="mt-6">
+                  <Button className="bg-blue-500 hover:bg-blue-600 text-white">
+                    Jogar Mega Millions Agora
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="powerball" className="mt-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-lottery-navy">
+                    Draw Results Powerball
+                  </h3>
+                  <p className="text-gray-600">
+                    Click for more details on the prize payouts
+                  </p>
+                </div>
+                <div className="mt-4 md:mt-0 flex items-center">
+                  <img 
+                    src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" 
+                    alt="Powerball Logo" 
+                    className="h-12 w-auto mr-4"
+                  />
+                  <Button variant="outline" className="flex items-center">
+                    <FileText className="mr-2 h-4 w-4" />
+                    Download PDF
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {currentPowerballResults.map((result, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                      <div>
+                        <h4 className="text-lg font-bold text-lottery-navy">{result.dayOfWeek}</h4>
+                        <p className="text-gray-600 text-sm">{result.displayDate}</p>
+                      </div>
+                      <Button variant="ghost" className="text-blue-600 p-0 h-auto hover:bg-transparent hover:text-blue-800">
+                        <ChevronRight className="h-5 w-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      {result.numbers.map((number, idx) => (
+                        <span 
+                          key={idx} 
+                          className="bg-[#ff5247] w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                        >
+                          {number}
+                        </span>
+                      ))}
+                      <span className="bg-amber-400 w-9 h-9 rounded-full flex items-center justify-center text-black font-bold text-sm">
+                        {result.powerball}
+                      </span>
+                      <span className="ml-2 text-sm">
+                        {result.multiplier}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <Pagination className="mt-6">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (powerballPage > 1) paginatePowerball(powerballPage - 1);
+                      }}
+                    />
+                  </PaginationItem>
+                  {Array.from({ length: Math.ceil(powerballHistory.length / powerballResultsPerPage) }).map((_, index) => (
+                    <PaginationItem key={index}>
+                      <PaginationLink 
+                        href="#" 
+                        isActive={powerballPage === index + 1}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          paginatePowerball(index + 1);
+                        }}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (powerballPage < Math.ceil(powerballHistory.length / powerballResultsPerPage)) {
+                          paginatePowerball(powerballPage + 1);
+                        }
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+              
+              <div className="text-center mt-8 text-sm text-gray-500">
+                <p>Fonte: <a href="https://www.illinoislottery.com/dbg/results/powerball" className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Illinois Lottery</a></p>
+                <p className="mt-1">Última atualização: {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+              </div>
+            </div>
+            
+            <Card className="bg-gray-50 border border-gray-200">
+              <CardContent className="p-6">
+                <h4 className="text-lg font-bold text-lottery-navy mb-3">Como Jogar na Powerball</h4>
+                <p className="text-gray-700 mb-4">
+                  O sorteio da Powerball ocorre segundas, quartas e sábados. Para jogar:
+                </p>
+                <ol className="list-decimal pl-5 space-y-2 text-gray-700">
+                  <li>Escolha 5 números de 1 a 69</li>
+                  <li>Escolha 1 número Powerball de 1 a 26</li>
+                  <li>Opcionalmente, adicione o Power Play para multiplicar seus prêmios (exceto o jackpot)</li>
+                  <li>Cada jogo custa R$ 15</li>
+                </ol>
+                <div className="mt-6">
+                  <Button className="bg-[#ff5247] hover:bg-[#ff5247]/90 text-white">
+                    Jogar Powerball Agora
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="lucky-day" className="mt-6">
+            <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-lottery-navy">
+                    Draw Results Lucky Day Lotto
+                  </h3>
+                  <p className="text-gray-600">
+                    Click for more details on the prize payouts
+                  </p>
+                </div>
+                <div className="mt-4 md:mt-0 flex items-center">
+                  <img 
+                    src="/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png" 
+                    alt="Lucky Day Logo" 
+                    className="h-12 w-auto mr-4"
+                  />
+                  <Button variant="outline" className="flex items-center">
+                    <FileText className="mr-2 h-4 w-4" />
+                    Download PDF
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {currentLuckyDayResults.map((result, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-3">
+                      <div>
+                        <h4 className="text-lg font-bold text-lottery-navy">{result.dayOfWeek}</h4>
+                        <p className="text-gray-600 text-sm">{result.displayDate}</p>
+                      </div>
+                      <Button variant="ghost" className="text-blue-600 p-0 h-auto hover:bg-transparent hover:text-blue-800">
+                        <ChevronRight className="h-5 w-5" />
+                      </Button>
+                    </div>
+                    
+                    <div className="flex items-center gap-2 mb-4 flex-wrap">
+                      {result.numbers.map((number, idx) => (
+                        <span 
+                          key={idx} 
+                          className="bg-[#8CD444] w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm"
+                        >
+                          {number}
+                        </span>
+                      ))}
+                      <span className="bg-amber-500 w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        {result.bonusNumber}
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-3 rounded-lg">
+                      <div>
+                        <p className="text-sm font-medium text-gray-700 mb-2">LOTTO MILLION 1</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.lottoMillion1.map((val, idx) => (
+                            <div
+                              key={idx}
+                              className="w-8 h-8 rounded-full bg-[#c2e190] text-gray-800 flex items-center justify-center font-bold text-sm"
+                            >
+                              {val}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-700 mb-2">LOTTO MILLION 2</p>
+                        <div className="flex flex-wrap gap-2">
+                          {result.lottoMillion2.map((val, idx) => (
+                            <div
+                              key={idx}
+                              className="w-8 h-8 rounded-full bg-[#c2e190] text-gray-800 flex items-center justify-center font-bold text-sm"
+                            >
+                              {val}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <Pagination className="mt-6">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (luckyDayPage > 1) paginateLuckyDay(luckyDayPage - 1);
+                      }}
+                    />
+                  </PaginationItem>
+                  {Array.from({ length: Math.ceil(luckyDayHistory.length / luckyDayResultsPerPage) }).map((_, index) => (
+                    <PaginationItem key={index}>
+                      <PaginationLink 
+                        href="#" 
+                        isActive={luckyDayPage === index + 1}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          paginateLuckyDay(index + 1);
+                        }}
+                      >
+                        {index + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext 
+                      href="#" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (luckyDayPage < Math.ceil(luckyDayHistory.length / luckyDayResultsPerPage)) {
+                          paginateLuckyDay(luckyDayPage + 1);
+                        }
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+              
+              <div className="text-center mt-8 text-sm text-gray-500">
+                <p>Fonte: <a href="https://www.illinoislottery.com/dbg/results/luckydaylotto" className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">Illinois Lottery</a></p>
+                <p className="mt-1">Última atualização: {new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+              </div>
+            </div>
+            
+            <Card className="bg-gray-50 border border-gray-200">
+              <CardContent className="p-6">
+                <h4 className="text-lg font-bold text-lottery-navy mb-3">Como Jogar no Lucky Day Lotto</h4>
+                <p className="text-gray-700 mb-4">
+                  O sorteio do Lucky Day Lotto ocorre duas vezes por dia. Para jogar:
+                </p>
+                <ol className="list-decimal pl-5 space-y-2 text-gray-700">
+                  <li>Escolha 5 números de 1 a 45</li>
+                  <li>Opcionalmente, adicione o Lucky Boost para aumentar seus prêmios</li>
+                  <li>Cada jogo custa R$ 15</li>
+                </ol>
+                <div className="mt-6">
+                  <Button className="bg-[#8CD444] hover:bg-[#8CD444]/90 text-white">
+                    Jogar Lucky Day Lotto Agora
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          {["pick4", "cash5"].map((tab) => (
+            <TabsContent key={tab} value={tab} className="mt-6">
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-bold text-center text-lottery-navy mb-4">
+                  {tab.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} Results
+                </h3>
+                <p className="text-center text-gray-500">
+                  Showing filtered results for {tab.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+                </p>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
       </main>
+      
       <Footer />
     </div>
   );
