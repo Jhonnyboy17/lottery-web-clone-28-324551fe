@@ -134,14 +134,6 @@
   transform: translateX(0);
 }
 
-/* Hero banner styles */
-.hero-banner {
-  position: relative;
-  height: 400px;
-  overflow: hidden;
-}
-
-/* Old hero slider styles - keeping for reference */
 .hero-slider {
   position: relative;
   height: 400px;
