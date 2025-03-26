@@ -710,5 +710,3 @@ const luckyDayHistory: LuckyDayResult[] = [
     bonusNumber: "8",
     lottoMillion1: ["3", "11", "15", "23", "28", "37"],
     lottoMillion2: ["2", "29", "38", "41", "42", "49"]
-  }
-];
