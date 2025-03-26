@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LotteryCard from "@/components/LotteryCard";
 import NumbersDisplay from "@/components/NumbersDisplay";
 import Footer from "@/components/Footer";
+import UpcomingDraws from "@/components/UpcomingDraws";
 import { ChevronRight } from "lucide-react";
 
 const lotteryGames = [
@@ -98,12 +98,10 @@ const Index = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle hash navigation when page loads
   useEffect(() => {
     if (window.location.hash === '#lottery-games') {
       const gamesSection = document.getElementById('lottery-games');
       if (gamesSection) {
-        // Small delay to ensure the page is fully loaded
         setTimeout(() => {
           gamesSection.scrollIntoView({ behavior: 'smooth' });
         }, 100);
@@ -145,6 +143,10 @@ const Index = () => {
               />
             ))}
           </div>
+        </section>
+
+        <section className="container mx-auto px-4 py-12">
+          <UpcomingDraws />
         </section>
 
         <section className="container mx-auto px-4 py-12 bg-gray-50 dark:bg-lottery-dark-bg">
