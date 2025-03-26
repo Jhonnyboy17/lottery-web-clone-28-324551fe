@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
@@ -1315,29 +1316,30 @@ const ResultsHub = () => {
                 page === getTotalPages() || 
                 (page >= currentPage - 1 && page <= currentPage + 1)
               ))
-              .map((page, i, array) => (
-                <React.Fragment key={page}>
-                  {i > 0 && array[i - 1] !== page - 1 && (
+              .map((page, i, array) => {
+                // Add ellipsis between non-consecutive pages
+                return (
+                  <React.Fragment key={page}>
+                    {i > 0 && array[i - 1] !== page - 1 && (
+                      <PaginationItem>
+                        <span className="px-4">...</span>
+                      </PaginationItem>
+                    )}
                     <PaginationItem>
-                      <PaginationLink href="#" onClick={(e) => e.preventDefault()} disabled>
-                        ...
+                      <PaginationLink 
+                        href="#" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handlePageChange(page);
+                        }} 
+                        isActive={page === currentPage}
+                      >
+                        {page}
                       </PaginationLink>
                     </PaginationItem>
-                  )}
-                  <PaginationItem>
-                    <PaginationLink 
-                      href="#" 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handlePageChange(page);
-                      }} 
-                      isActive={page === currentPage}
-                    >
-                      {page}
-                    </PaginationLink>
-                  </PaginationItem>
-                </React.Fragment>
-              ))}
+                  </React.Fragment>
+                );
+              })}
             
             <PaginationItem>
               <PaginationNext 
