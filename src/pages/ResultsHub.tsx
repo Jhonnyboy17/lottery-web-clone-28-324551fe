@@ -405,7 +405,7 @@ const powerballHistory: PowerballResult[] = [
   },
   {
     drawDate: "02/17/2025",
-    displayDate: "17 de fevereiro de 22025",
+    displayDate: "17 de fevereiro de 2025",
     dayOfWeek: "Segunda-feira",
     numbers: ["5", "6", "24", "32", "43"],
     powerball: "1",
@@ -710,3 +710,15 @@ const luckyDayHistory: LuckyDayResult[] = [
     bonusNumber: "8",
     lottoMillion1: ["3", "11", "15", "23", "28", "37"],
     lottoMillion2: ["2", "29", "38", "41", "42", "49"]
+  }
+];
+
+const ResultsHub = () => {
+  return (
+    <div>
+      {/* Add your component content here */}
+    </div>
+  );
+};
+
+export default ResultsHub;
