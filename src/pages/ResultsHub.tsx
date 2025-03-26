@@ -56,6 +56,8 @@ interface Pick4Result {
   numbers: string[];
 }
 
+type GameResult = MegaMillionsResult | PowerballResult | LuckyDayResult | Pick4Result;
+
 const megaMillionsHistory: MegaMillionsResult[] = [
   {
     drawDate: "03/21/2025",
@@ -841,7 +843,7 @@ const ResultsHub = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentResults.map((result: MegaMillionsResult, index) => (
+            {(currentResults as MegaMillionsResult[]).map((result, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <div className="flex flex-col">
@@ -885,7 +887,7 @@ const ResultsHub = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentResults.map((result: PowerballResult, index) => (
+            {(currentResults as PowerballResult[]).map((result, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <div className="flex flex-col">
@@ -928,7 +930,7 @@ const ResultsHub = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentResults.map((result: LuckyDayResult, index) => (
+            {(currentResults as LuckyDayResult[]).map((result, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <div className="flex flex-col">
@@ -966,7 +968,7 @@ const ResultsHub = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {currentResults.map((result: Pick4Result, index) => (
+            {(currentResults as Pick4Result[]).map((result, index) => (
               <TableRow key={index}>
                 <TableCell>
                   <div className="flex flex-col">
@@ -1195,3 +1197,4 @@ const ResultsHub = () => {
 };
 
 export default ResultsHub;
+
