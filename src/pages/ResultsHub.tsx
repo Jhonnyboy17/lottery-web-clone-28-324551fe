@@ -720,4 +720,478 @@ const luckyDayHistory: LuckyDayResult[] = [
   {
     drawDate: "03/15/2025",
     displayDate: "15 de março de 2025",
-    dayOfWeek:
+    dayOfWeek: "Sábado",
+    numbers: ["17", "24", "29", "35", "38", "42"],
+    bonusNumber: "8",
+    lottoMillion1: ["4", "15", "19", "26", "33", "41"],
+    lottoMillion2: ["7", "13", "22", "31", "37", "45"]
+  }
+];
+
+const pick4History: Pick4Result[] = [
+  {
+    drawDate: "03/25/2025",
+    displayDate: "25 de março de 2025",
+    dayOfWeek: "Terça-feira",
+    drawTime: "Dia",
+    numbers: ["8", "18", "21", "27", "30"]
+  },
+  {
+    drawDate: "03/25/2025",
+    displayDate: "25 de março de 2025",
+    dayOfWeek: "Terça-feira",
+    drawTime: "Noite",
+    numbers: ["3", "11", "19", "22", "29"]
+  },
+  {
+    drawDate: "03/24/2025",
+    displayDate: "24 de março de 2025",
+    dayOfWeek: "Segunda-feira",
+    drawTime: "Dia",
+    numbers: ["5", "12", "17", "23", "31"]
+  },
+  {
+    drawDate: "03/24/2025",
+    displayDate: "24 de março de 2025",
+    dayOfWeek: "Segunda-feira",
+    drawTime: "Noite",
+    numbers: ["1", "9", "14", "20", "25"]
+  },
+  {
+    drawDate: "03/23/2025",
+    displayDate: "23 de março de 2025",
+    dayOfWeek: "Domingo",
+    drawTime: "Dia",
+    numbers: ["6", "13", "16", "26", "32"]
+  }
+];
+
+const ResultsHub = () => {
+  const [activeGame, setActiveGame] = useState("mega-millions");
+  const [currentPage, setCurrentPage] = useState(1);
+  const resultsPerPage = 10;
+
+  const getGameResults = () => {
+    switch (activeGame) {
+      case "mega-millions":
+        return megaMillionsHistory;
+      case "powerball":
+        return powerballHistory;
+      case "lucky-day":
+        return luckyDayHistory;
+      case "pick4":
+        return pick4History;
+      default:
+        return megaMillionsHistory;
+    }
+  };
+
+  const gameResults = getGameResults();
+  
+  const totalPages = Math.ceil(gameResults.length / resultsPerPage);
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult = indexOfLastResult - resultsPerPage;
+  const currentResults = gameResults.slice(indexOfFirstResult, indexOfLastResult);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getGameNameFromId = (id: string) => {
+    switch (id) {
+      case "mega-millions":
+        return "Mega Millions";
+      case "powerball":
+        return "Powerball";
+      case "lucky-day":
+        return "Lucky Day Lotto";
+      case "pick4":
+        return "Pick 4";
+      default:
+        return "Mega Millions";
+    }
+  };
+
+  const getGameLogoFromId = (id: string) => {
+    switch (id) {
+      case "mega-millions":
+        return "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png";
+      case "powerball":
+        return "/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png";
+      case "lucky-day":
+        return "/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png";
+      case "pick4":
+        return "/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png";
+      default:
+        return "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png";
+    }
+  };
+
+  const renderResultsTable = () => {
+    if (activeGame === "mega-millions") {
+      return (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Data</TableHead>
+              <TableHead>Números</TableHead>
+              <TableHead>Mega Ball</TableHead>
+              <TableHead>Multiplicador</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {currentResults.map((result: MegaMillionsResult, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{result.dayOfWeek}</span>
+                    <span className="text-sm text-gray-500">{result.displayDate}</span>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="flex space-x-2">
+                    {result.numbers.map((num, idx) => (
+                      <div key={idx} className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-medium">
+                        {num}
+                      </div>
+                    ))}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-medium">
+                    {result.megaBall}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-center font-medium">
+                    {result.multiplier}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      );
+    } else if (activeGame === "powerball") {
+      return (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Data</TableHead>
+              <TableHead>Números</TableHead>
+              <TableHead>Powerball</TableHead>
+              <TableHead>Multiplicador</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {currentResults.map((result: PowerballResult, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{result.dayOfWeek}</span>
+                    <span className="text-sm text-gray-500">{result.displayDate}</span>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="flex space-x-2">
+                    {result.numbers.map((num, idx) => (
+                      <div key={idx} className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white font-medium">
+                        {num}
+                      </div>
+                    ))}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-medium">
+                    {result.powerball}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-center font-medium">
+                    {result.multiplier}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      );
+    } else if (activeGame === "lucky-day") {
+      return (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Data</TableHead>
+              <TableHead>Números</TableHead>
+              <TableHead>Bônus</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {currentResults.map((result: LuckyDayResult, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{result.dayOfWeek}</span>
+                    <span className="text-sm text-gray-500">{result.displayDate}</span>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="flex space-x-2">
+                    {result.numbers.map((num, idx) => (
+                      <div key={idx} className="w-8 h-8 rounded-full bg-[#8CD444] flex items-center justify-center text-white font-medium">
+                        {num}
+                      </div>
+                    ))}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white font-medium">
+                    {result.bonusNumber}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      );
+    } else if (activeGame === "pick4") {
+      return (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Data</TableHead>
+              <TableHead>Período</TableHead>
+              <TableHead>Números</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {currentResults.map((result: Pick4Result, index) => (
+              <TableRow key={index}>
+                <TableCell>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{result.dayOfWeek}</span>
+                    <span className="text-sm text-gray-500">{result.displayDate}</span>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-center font-medium">
+                    {result.drawTime}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="flex space-x-2">
+                    {result.numbers.map((num, idx) => (
+                      <div key={idx} className="w-8 h-8 rounded-full bg-[#00ccc6] flex items-center justify-center text-white font-medium">
+                        {num}
+                      </div>
+                    ))}
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      );
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Navbar />
+      
+      <div className="container mx-auto max-w-6xl px-4 pt-24 pb-16">
+        <div className="flex items-center mb-6">
+          <Button variant="ghost" className="mr-2" onClick={() => window.history.back()}>
+            <ArrowLeft className="w-5 h-5 mr-1" />
+            <span>Voltar</span>
+          </Button>
+          <h1 className="text-3xl font-bold text-lottery-navy">Hub de Resultados</h1>
+        </div>
+        
+        <Tabs value={activeGame} onValueChange={setActiveGame} className="mb-8">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-transparent">
+            <TabsTrigger 
+              value="mega-millions"
+              className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 border rounded-md"
+            >
+              <img src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" alt="Mega Millions" className="h-6 mr-2" />
+              Mega Millions
+            </TabsTrigger>
+            <TabsTrigger 
+              value="powerball"
+              className="data-[state=active]:bg-red-100 data-[state=active]:text-red-700 border rounded-md"
+            >
+              <img src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" alt="Powerball" className="h-6 mr-2" />
+              Powerball
+            </TabsTrigger>
+            <TabsTrigger 
+              value="lucky-day"
+              className="data-[state=active]:bg-green-100 data-[state=active]:text-green-700 border rounded-md"
+            >
+              <img src="/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png" alt="Lucky Day" className="h-6 mr-2" />
+              Lucky Day
+            </TabsTrigger>
+            <TabsTrigger 
+              value="pick4"
+              className="data-[state=active]:bg-cyan-100 data-[state=active]:text-cyan-700 border rounded-md"
+            >
+              <img src="/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png" alt="Pick 4" className="h-6 mr-2" />
+              Pick 4
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value={activeGame} className="mt-6">
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
+                <div className="flex items-center mb-4 md:mb-0">
+                  <img 
+                    src={getGameLogoFromId(activeGame)} 
+                    alt={getGameNameFromId(activeGame)} 
+                    className="h-10 mr-3" 
+                  />
+                  <div>
+                    <h2 className="text-xl font-bold">{getGameNameFromId(activeGame)} Resultados</h2>
+                    <p className="text-sm text-gray-500">Veja os resultados mais recentes</p>
+                  </div>
+                </div>
+                <div className="relative w-full md:w-64">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                  <input 
+                    type="text" 
+                    placeholder="Pesquisar por data..." 
+                    className="border rounded-full py-2 pl-10 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-lottery-navy/50"
+                  />
+                </div>
+              </div>
+
+              <div className="overflow-x-auto mb-6">
+                {renderResultsTable()}
+              </div>
+
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                      className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                    />
+                  </PaginationItem>
+                  
+                  {[...Array(totalPages)].map((_, i) => (
+                    <PaginationItem key={i}>
+                      <PaginationLink 
+                        isActive={currentPage === i + 1}
+                        onClick={() => handlePageChange(i + 1)}
+                      >
+                        {i + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  
+                  <PaginationItem>
+                    <PaginationNext 
+                      onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                      className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold mb-3 flex items-center">
+                <CalendarDays className="mr-2 text-lottery-pink" />
+                Próximos Sorteios
+              </h2>
+              <p className="text-gray-600 mb-4">
+                Fique atento para nunca perder um sorteio. Confira as datas e horários dos próximos sorteios.
+              </p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center">
+                    <img src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" alt="Mega Millions" className="h-6 mr-2" />
+                    <span className="font-medium">Mega Millions</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="block font-bold">Terça-feira</span>
+                    <span className="text-sm text-gray-500">23:00</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center">
+                    <img src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" alt="Powerball" className="h-6 mr-2" />
+                    <span className="font-medium">Powerball</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="block font-bold">Quarta-feira</span>
+                    <span className="text-sm text-gray-500">22:30</span>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center">
+                    <img src="/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png" alt="Lucky Day" className="h-6 mr-2" />
+                    <span className="font-medium">Lucky Day</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="block font-bold">Todos os dias</span>
+                    <span className="text-sm text-gray-500">19:00</span>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-6">
+              <h2 className="text-xl font-bold mb-3 flex items-center">
+                <FileText className="mr-2 text-lottery-navy" />
+                Como Jogar
+              </h2>
+              <p className="text-gray-600 mb-4">
+                Aprenda como jogar na nossa plataforma e entenda as regras básicas de cada jogo.
+              </p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center">
+                    <img src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" alt="Mega Millions" className="h-6 mr-2" />
+                    <span className="font-medium">Regras do Mega Millions</span>
+                  </div>
+                  <Button variant="ghost" size="sm">
+                    <ChevronRight className="h-5 w-5" />
+                  </Button>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center">
+                    <img src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" alt="Powerball" className="h-6 mr-2" />
+                    <span className="font-medium">Regras do Powerball</span>
+                  </div>
+                  <Button variant="ghost" size="sm">
+                    <ChevronRight className="h-5 w-5" />
+                  </Button>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-center">
+                    <img src="/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png" alt="Pick 4" className="h-6 mr-2" />
+                    <span className="font-medium">Regras do Pick 4</span>
+                  </div>
+                  <Button variant="ghost" size="sm">
+                    <ChevronRight className="h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default ResultsHub;
