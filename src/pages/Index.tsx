@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -145,14 +146,14 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="container mx-auto px-4 py-12">
-          <UpcomingDraws />
-        </section>
-
         <section className="container mx-auto px-4 py-12 bg-gray-50 dark:bg-lottery-dark-bg">
           <div className="bg-white dark:bg-lottery-dark-card rounded-xl shadow-md p-8">
             <NumbersDisplay />
           </div>
+        </section>
+
+        <section className="container mx-auto px-4 py-12">
+          <UpcomingDraws />
         </section>
 
         <section className="container mx-auto px-4 py-12">
