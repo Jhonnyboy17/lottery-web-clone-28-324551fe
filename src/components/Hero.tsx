@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 interface Slide {
@@ -10,7 +9,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    bgImage: "/lovable-uploads/c2459874-7121-4fec-a9ea-bd77c1ce0ecc.png",
+    bgImage: "/lovable-uploads/3c5452ba-fd70-4412-a4d4-aff0abe67a0a.png",
   },
   {
     id: 2,
@@ -52,17 +51,14 @@ const Hero = () => {
   }, [isAutoPlay]);
 
   const handleSlideClick = () => {
-    // Move to the next slide when the current slide is clicked
     setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     
-    // Reset autoplay timer
     setIsAutoPlay(false);
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
     }
     
-    // Restart autoplay after manual navigation
     setIsAutoPlay(true);
   };
 
