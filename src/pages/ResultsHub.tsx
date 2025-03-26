@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -759,3 +760,672 @@ const lottoHistory: LottoResult[] = [
     time: "Evening",
     numbers: ["23", "27", "31", "33", "43"]
   },
+  {
+    date: "22/03/2025",
+    displayDate: "22 de março de 2025",
+    time: "Midday",
+    numbers: ["23", "26", "28", "40", "42"]
+  },
+  {
+    date: "22/03/2025",
+    displayDate: "22 de março de 2025",
+    time: "Evening",
+    numbers: ["19", "26", "38", "40", "41"]
+  },
+  {
+    date: "21/03/2025",
+    displayDate: "21 de março de 2025",
+    time: "Midday",
+    numbers: ["8", "12", "37", "42", "44"]
+  },
+  {
+    date: "21/03/2025",
+    displayDate: "21 de março de 2025",
+    time: "Evening",
+    numbers: ["3", "24", "27", "34", "38"]
+  },
+  {
+    date: "20/03/2025",
+    displayDate: "20 de março de 2025",
+    time: "Midday",
+    numbers: ["4", "30", "32", "33", "43"]
+  },
+  {
+    date: "20/03/2025",
+    displayDate: "20 de março de 2025",
+    time: "Evening",
+    numbers: ["7", "10", "14", "38", "40"]
+  },
+  {
+    date: "19/03/2025",
+    displayDate: "19 de março de 2025",
+    time: "Midday",
+    numbers: ["21", "24", "30", "36", "42"]
+  },
+  {
+    date: "19/03/2025",
+    displayDate: "19 de março de 2025",
+    time: "Evening",
+    numbers: ["10", "30", "34", "39", "44"]
+  },
+  {
+    date: "18/03/2025",
+    displayDate: "18 de março de 2025",
+    time: "Midday",
+    numbers: ["4", "22", "29", "34", "39"]
+  },
+  {
+    date: "18/03/2025",
+    displayDate: "18 de março de 2025",
+    time: "Evening",
+    numbers: ["4", "14", "23", "30", "32"]
+  },
+  {
+    date: "17/03/2025",
+    displayDate: "17 de março de 2025",
+    time: "Midday",
+    numbers: ["8", "22", "25", "32", "33"]
+  },
+  {
+    date: "17/03/2025",
+    displayDate: "17 de março de 2025",
+    time: "Evening",
+    numbers: ["5", "27", "32", "40", "42"]
+  },
+  {
+    date: "16/03/2025",
+    displayDate: "16 de março de 2025",
+    time: "Midday",
+    numbers: ["21", "27", "30", "41", "43"]
+  },
+  {
+    date: "16/03/2025",
+    displayDate: "16 de março de 2025",
+    time: "Evening",
+    numbers: ["8", "11", "19", "20", "21"]
+  },
+  {
+    date: "15/03/2025",
+    displayDate: "15 de março de 2025",
+    time: "Midday",
+    numbers: ["8", "15", "23", "26", "38"]
+  },
+  {
+    date: "15/03/2025",
+    displayDate: "15 de março de 2025",
+    time: "Evening",
+    numbers: ["1", "16", "17", "31", "45"]
+  },
+  {
+    date: "14/03/2025",
+    displayDate: "14 de março de 2025",
+    time: "Midday",
+    numbers: ["2", "4", "9", "12", "28"]
+  },
+  {
+    date: "14/03/2025",
+    displayDate: "14 de março de 2025",
+    time: "Evening",
+    numbers: ["1", "9", "10", "19", "29"]
+  },
+  {
+    date: "13/03/2025",
+    displayDate: "13 de março de 2025",
+    time: "Midday",
+    numbers: ["4", "7", "13", "31", "43"]
+  },
+  {
+    date: "13/03/2025",
+    displayDate: "13 de março de 2025",
+    time: "Evening",
+    numbers: ["5", "8", "12", "26", "35"]
+  },
+  {
+    date: "12/03/2025",
+    displayDate: "12 de março de 2025",
+    time: "Midday",
+    numbers: ["8", "15", "23", "31", "33"]
+  },
+  {
+    date: "12/03/2025",
+    displayDate: "12 de março de 2025",
+    time: "Evening",
+    numbers: ["4", "7", "10", "30", "45"]
+  },
+  {
+    date: "11/03/2025",
+    displayDate: "11 de março de 2025",
+    time: "Midday",
+    numbers: ["2", "12", "14", "20", "43"]
+  },
+  {
+    date: "11/03/2025",
+    displayDate: "11 de março de 2025",
+    time: "Evening",
+    numbers: ["15", "21", "24", "35", "39"]
+  },
+  {
+    date: "10/03/2025",
+    displayDate: "10 de março de 2025",
+    time: "Midday",
+    numbers: ["5", "13", "17", "20", "32"]
+  },
+  {
+    date: "10/03/2025",
+    displayDate: "10 de março de 2025",
+    time: "Evening",
+    numbers: ["6", "18", "26", "27", "33"]
+  },
+  {
+    date: "09/03/2025",
+    displayDate: "9 de março de 2025",
+    time: "Midday",
+    numbers: ["10", "16", "21", "28", "37"]
+  },
+  {
+    date: "09/03/2025",
+    displayDate: "9 de março de 2025",
+    time: "Evening",
+    numbers: ["9", "10", "16", "24", "27"]
+  },
+  {
+    date: "08/03/2025",
+    displayDate: "8 de março de 2025",
+    time: "Midday",
+    numbers: ["8", "27", "29", "35", "37"]
+  },
+  {
+    date: "08/03/2025",
+    displayDate: "8 de março de 2025",
+    time: "Evening",
+    numbers: ["2", "10", "11", "12", "20"]
+  },
+  {
+    date: "07/03/2025",
+    displayDate: "7 de março de 2025",
+    time: "Midday",
+    numbers: ["17", "28", "39", "43", "44"]
+  },
+  {
+    date: "07/03/2025",
+    displayDate: "7 de março de 2025",
+    time: "Evening",
+    numbers: ["15", "24", "31", "32", "40"]
+  },
+  {
+    date: "06/03/2025",
+    displayDate: "6 de março de 2025",
+    time: "Midday",
+    numbers: ["33", "36", "41", "42", "45"]
+  },
+  {
+    date: "06/03/2025",
+    displayDate: "6 de março de 2025",
+    time: "Evening",
+    numbers: ["10", "21", "33", "35", "41"]
+  },
+  {
+    date: "05/03/2025",
+    displayDate: "5 de março de 2025",
+    time: "Midday",
+    numbers: ["15", "32", "34", "35", "44"]
+  },
+  {
+    date: "05/03/2025",
+    displayDate: "5 de março de 2025",
+    time: "Evening",
+    numbers: ["15", "18", "19", "24", "34"]
+  },
+  {
+    date: "04/03/2025",
+    displayDate: "4 de março de 2025",
+    time: "Midday",
+    numbers: ["10", "11", "20", "27", "36"]
+  },
+  {
+    date: "04/03/2025",
+    displayDate: "4 de março de 2025",
+    time: "Evening",
+    numbers: ["2", "6", "17", "19", "25"]
+  },
+  {
+    date: "03/03/2025",
+    displayDate: "3 de março de 2025",
+    time: "Midday",
+    numbers: ["3", "4", "6", "20", "33"]
+  },
+  {
+    date: "03/03/2025",
+    displayDate: "3 de março de 2025",
+    time: "Evening",
+    numbers: ["1", "2", "5", "10", "23"]
+  },
+  {
+    date: "02/03/2025",
+    displayDate: "2 de março de 2025",
+    time: "Midday",
+    numbers: ["7", "9", "14", "16", "22"]
+  },
+  {
+    date: "02/03/2025",
+    displayDate: "2 de março de 2025",
+    time: "Evening",
+    numbers: ["8", "11", "13", "18", "21"]
+  },
+  {
+    date: "01/03/2025",
+    displayDate: "1 de março de 2025",
+    time: "Midday",
+    numbers: ["4", "5", "9", "12", "15"]
+  },
+  {
+    date: "01/03/2025",
+    displayDate: "1 de março de 2025",
+    time: "Evening",
+    numbers: ["3", "7", "11", "14", "17"]
+  },
+  {
+    date: "28/02/2025",
+    displayDate: "28 de fevereiro de 2025",
+    time: "Midday",
+    numbers: ["2", "8", "10", "13", "19"]
+  },
+  {
+    date: "28/02/2025",
+    displayDate: "28 de fevereiro de 2025",
+    time: "Evening",
+    numbers: ["1", "4", "6", "9", "12"]
+  }
+];
+
+const ResultsHub = () => {
+  const [activeTab, setActiveTab] = useState("mega-millions");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const getTabResults = () => {
+    switch (activeTab) {
+      case "mega-millions":
+        return megaMillionsHistory.filter(result => 
+          result.numbers.join(" ").includes(searchTerm) || 
+          result.drawDate.includes(searchTerm) ||
+          result.megaBall.includes(searchTerm)
+        );
+      case "powerball":
+        return powerballHistory.filter(result => 
+          result.numbers.join(" ").includes(searchTerm) || 
+          result.drawDate.includes(searchTerm) ||
+          result.powerball.includes(searchTerm)
+        );
+      case "lucky-day":
+        return luckyDayHistory.filter(result => 
+          result.numbers.join(" ").includes(searchTerm) || 
+          result.drawDate.includes(searchTerm) ||
+          result.bonusNumber.includes(searchTerm)
+        );
+      case "lotto":
+        return lottoHistory.filter(result => 
+          result.numbers.join(" ").includes(searchTerm) || 
+          result.date.includes(searchTerm)
+        );
+      default:
+        return [];
+    }
+  };
+
+  const paginatedResults = () => {
+    const results = getTabResults();
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return results.slice(startIndex, endIndex);
+  };
+
+  const totalPages = Math.ceil(getTabResults().length / itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const renderPageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+    const halfVisible = Math.floor(maxVisiblePages / 2);
+    
+    let startPage = Math.max(1, currentPage - halfVisible);
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    if (startPage > 1) {
+      pages.push(
+        <PaginationItem key="first">
+          <PaginationLink onClick={() => handlePageChange(1)}>1</PaginationLink>
+        </PaginationItem>
+      );
+      if (startPage > 2) {
+        pages.push(
+          <PaginationItem key="ellipsis-start">
+            <PaginationEllipsis />
+          </PaginationItem>
+        );
+      }
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <PaginationItem key={i}>
+          <PaginationLink 
+            isActive={currentPage === i}
+            onClick={() => handlePageChange(i)}
+          >
+            {i}
+          </PaginationLink>
+        </PaginationItem>
+      );
+    }
+    
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        pages.push(
+          <PaginationItem key="ellipsis-end">
+            <PaginationEllipsis />
+          </PaginationItem>
+        );
+      }
+      pages.push(
+        <PaginationItem key="last">
+          <PaginationLink onClick={() => handlePageChange(totalPages)}>
+            {totalPages}
+          </PaginationLink>
+        </PaginationItem>
+      );
+    }
+    
+    return pages;
+  };
+
+  const renderMegaMillionsResults = () => {
+    const results = paginatedResults() as MegaMillionsResult[];
+    return (
+      <Table className="animate-fade-in">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-nunito font-bold">Data</TableHead>
+            <TableHead className="font-nunito font-bold">Dia da Semana</TableHead>
+            <TableHead className="font-nunito font-bold">Números</TableHead>
+            <TableHead className="font-nunito font-bold">Mega Ball</TableHead>
+            <TableHead className="font-nunito font-bold">Multiplicador</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {results.map((result, index) => (
+            <TableRow key={index}>
+              <TableCell>{result.displayDate}</TableCell>
+              <TableCell>{result.dayOfWeek}</TableCell>
+              <TableCell>
+                <div className="flex space-x-2">
+                  {result.numbers.map((num, idx) => (
+                    <span 
+                      key={idx} 
+                      className="number-ball w-8 h-8 rounded-full bg-lottery-pink text-white flex items-center justify-center text-sm font-semibold"
+                    >
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </TableCell>
+              <TableCell>
+                <span className="number-ball w-8 h-8 rounded-full bg-lottery-yellow text-black flex items-center justify-center text-sm font-semibold">
+                  {result.megaBall}
+                </span>
+              </TableCell>
+              <TableCell>{result.multiplier}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  };
+
+  const renderPowerballResults = () => {
+    const results = paginatedResults() as PowerballResult[];
+    return (
+      <Table className="animate-fade-in">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-nunito font-bold">Data</TableHead>
+            <TableHead className="font-nunito font-bold">Dia da Semana</TableHead>
+            <TableHead className="font-nunito font-bold">Números</TableHead>
+            <TableHead className="font-nunito font-bold">Powerball</TableHead>
+            <TableHead className="font-nunito font-bold">Multiplicador</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {results.map((result, index) => (
+            <TableRow key={index}>
+              <TableCell>{result.displayDate}</TableCell>
+              <TableCell>{result.dayOfWeek}</TableCell>
+              <TableCell>
+                <div className="flex space-x-2">
+                  {result.numbers.map((num, idx) => (
+                    <span 
+                      key={idx} 
+                      className="number-ball w-8 h-8 rounded-full bg-lottery-red text-white flex items-center justify-center text-sm font-semibold"
+                    >
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </TableCell>
+              <TableCell>
+                <span className="number-ball w-8 h-8 rounded-full bg-lottery-red text-white flex items-center justify-center text-sm font-semibold border-2 border-white">
+                  {result.powerball}
+                </span>
+              </TableCell>
+              <TableCell>{result.multiplier}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  };
+
+  const renderLuckyDayResults = () => {
+    const results = paginatedResults() as LuckyDayResult[];
+    return (
+      <Table className="animate-fade-in">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-nunito font-bold">Data</TableHead>
+            <TableHead className="font-nunito font-bold">Dia da Semana</TableHead>
+            <TableHead className="font-nunito font-bold">Números</TableHead>
+            <TableHead className="font-nunito font-bold">Número Bônus</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {results.map((result, index) => (
+            <TableRow key={index}>
+              <TableCell>{result.displayDate}</TableCell>
+              <TableCell>{result.dayOfWeek}</TableCell>
+              <TableCell>
+                <div className="flex space-x-2">
+                  {result.numbers.map((num, idx) => (
+                    <span 
+                      key={idx} 
+                      className="number-ball w-8 h-8 rounded-full bg-lottery-navy text-white flex items-center justify-center text-sm font-semibold"
+                    >
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </TableCell>
+              <TableCell>
+                <span className="number-ball w-8 h-8 rounded-full bg-lottery-yellow text-black flex items-center justify-center text-sm font-semibold">
+                  {result.bonusNumber}
+                </span>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  };
+
+  const renderLottoResults = () => {
+    const results = paginatedResults() as LottoResult[];
+    return (
+      <Table className="animate-fade-in">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-nunito font-bold">Data</TableHead>
+            <TableHead className="font-nunito font-bold">Período</TableHead>
+            <TableHead className="font-nunito font-bold">Números</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {results.map((result, index) => (
+            <TableRow key={index}>
+              <TableCell>{result.displayDate}</TableCell>
+              <TableCell>
+                <div className="flex items-center">
+                  {result.time === "Midday" ? (
+                    <><Sun className="h-4 w-4 mr-1 text-yellow-500" /> Meio-dia</>
+                  ) : (
+                    <><Moon className="h-4 w-4 mr-1 text-blue-500" /> Noite</>
+                  )}
+                </div>
+              </TableCell>
+              <TableCell>
+                <div className="flex space-x-2">
+                  {result.numbers.map((num, idx) => (
+                    <span 
+                      key={idx} 
+                      className="number-ball w-8 h-8 rounded-full bg-lottery-purple text-white flex items-center justify-center text-sm font-semibold"
+                    >
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background">
+      <Navbar />
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <div className="space-y-6">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold font-nunito">Resultados das Loterias</h1>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4" />
+              <input
+                type="text"
+                placeholder="Buscar resultados..."
+                className="pl-10 pr-4 py-2 border rounded-md w-64 focus:outline-none focus:ring-2 focus:ring-primary"
+                value={searchTerm}
+                onChange={handleSearch}
+              />
+            </div>
+          </div>
+
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="w-full justify-start border-b rounded-none bg-transparent p-0 mb-6">
+              <TabsTrigger 
+                value="mega-millions" 
+                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+              >
+                Mega Millions
+              </TabsTrigger>
+              <TabsTrigger 
+                value="powerball"
+                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+              >
+                Powerball
+              </TabsTrigger>
+              <TabsTrigger 
+                value="lucky-day"
+                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+              >
+                Lucky Day
+              </TabsTrigger>
+              <TabsTrigger 
+                value="lotto"
+                className="font-nunito px-6 py-3 data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none data-[state=active]:bg-transparent data-[state=active]:shadow-none"
+              >
+                Lotto
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="mega-millions" className="space-y-6">
+              <Card>
+                <CardContent className="p-6">
+                  {renderMegaMillionsResults()}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="powerball" className="space-y-6">
+              <Card>
+                <CardContent className="p-6">
+                  {renderPowerballResults()}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="lucky-day" className="space-y-6">
+              <Card>
+                <CardContent className="p-6">
+                  {renderLuckyDayResults()}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="lotto" className="space-y-6">
+              <Card>
+                <CardContent className="p-6">
+                  {renderLottoResults()}
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+
+          {totalPages > 1 && (
+            <Pagination className="mt-8">
+              <PaginationContent>
+                {currentPage > 1 && (
+                  <PaginationItem>
+                    <PaginationPrevious onClick={() => handlePageChange(currentPage - 1)} />
+                  </PaginationItem>
+                )}
+                
+                {renderPageNumbers()}
+                
+                {currentPage < totalPages && (
+                  <PaginationItem>
+                    <PaginationNext onClick={() => handlePageChange(currentPage + 1)} />
+                  </PaginationItem>
+                )}
+              </PaginationContent>
+            </Pagination>
+          )}
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default ResultsHub;
