@@ -81,25 +81,6 @@ const App = () => (
             } 
           />
           
-          {/* Lotto - R$15 */}
-          <Route 
-            path="/play-lotto" 
-            element={
-              <PlayPage 
-                logoSrc="/lovable-uploads/10e61813-2686-412f-9f9b-6211c7c7646f.png"
-                jackpotAmount="4.850.000" 
-                basePrice={15}
-                primaryColor="green-500"
-                gameName="Lotto"
-                extraPlayName="Extra Shot"
-                maxRegularNumbers={6}
-                totalRegularNumbers={52}
-                maxPowerballNumbers={0}
-                totalPowerballNumbers={0}
-              />
-            } 
-          />
-          
           {/* Pick 4 - R$10 */}
           <Route 
             path="/play-pick4" 
