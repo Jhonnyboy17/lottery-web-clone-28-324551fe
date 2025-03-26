@@ -85,10 +85,10 @@ const games: NumbersGame[] = [
   {
     id: 5,
     name: "Lotto",
-    logo: "https://via.placeholder.com/120x50/8CC63F/FFFFFF?text=LOTTO",
+    logo: "/lovable-uploads/10e61813-2686-412f-9f9b-6211c7c7646f.png",
     date: "Quinta-feira, 20 de março de 2025",
     numbers: [
-      { value: "6", color: "bg-blue-500" },
+      { value: "6", color: "bg-green-500" },
       { value: "12", color: "bg-green-500" },
       { value: "13", color: "bg-green-500" },
       { value: "20", color: "bg-green-500" },
