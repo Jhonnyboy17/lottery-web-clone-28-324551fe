@@ -1,10 +1,22 @@
-import { useState, useEffect } from "react";
+
+import { useState, useEffect, useRef } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Search, ArrowLeft, CalendarDays, ArrowRight, FileText, ChevronRight } from "lucide-react";
+import { 
+  Search, 
+  ArrowLeft, 
+  CalendarDays, 
+  ArrowRight, 
+  FileText, 
+  ChevronRight, 
+  CheckCircle, 
+  EyeIcon,
+  ChevronDown 
+} from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -771,7 +783,22 @@ const pick4History: Pick4Result[] = [
 const ResultsHub = () => {
   const [activeGame, setActiveGame] = useState("mega-millions");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showGamesDropdown, setShowGamesDropdown] = useState(false);
   const resultsPerPage = 10;
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowGamesDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const getGameResults = () => {
     switch (activeGame) {
@@ -828,6 +855,86 @@ const ResultsHub = () => {
       default:
         return "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png";
     }
+  };
+
+  const getGameBgColorFromId = (id: string) => {
+    switch (id) {
+      case "mega-millions":
+        return "bg-blue-500";
+      case "powerball":
+        return "bg-[#ff5247]";
+      case "lucky-day":
+        return "bg-[#8CD444]";
+      case "pick4":
+        return "bg-[#00ccc6]";
+      case "cash5":
+        return "bg-[#ffa039]";
+      case "fast-play":
+        return "bg-[#ffa039]";
+      default:
+        return "bg-blue-500";
+    }
+  };
+
+  const lotteryGames = [
+    {
+      id: "mega-millions",
+      name: "Mega Millions",
+      logoSrc: "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png",
+      latestResults: "15, 22, 31, 52, 57 + 2",
+      nextDrawing: "SEXTA, MAR 25",
+      backgroundColor: "bg-blue-500",
+      route: "/play-mega-millions",
+    },
+    {
+      id: "powerball",
+      name: "Powerball",
+      logoSrc: "/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png",
+      latestResults: "8, 11, 21, 49, 59 + 15",
+      nextDrawing: "SÁBADO, MAR 22",
+      backgroundColor: "bg-[#ff5247]",
+      route: "/play-powerball",
+    },
+    {
+      id: "lucky-day",
+      name: "Lucky Day Lotto",
+      logoSrc: "/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png",
+      latestResults: "9, 13, 16, 31, 36, 42",
+      nextDrawing: "SEGUNDA, MAR 24",
+      backgroundColor: "bg-[#8CD444]",
+      route: "/play-lucky-day",
+    },
+    {
+      id: "pick4",
+      name: "Pick 4",
+      logoSrc: "/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png",
+      latestResults: "8, 18, 21, 27, 30",
+      nextDrawing: "SÁBADO, MAR 22",
+      backgroundColor: "bg-[#00ccc6]",
+      route: "/play-pick4",
+    },
+    {
+      id: "cash5",
+      name: "Cash 5",
+      logoSrc: "/lovable-uploads/c0b5f378-154f-476e-a51e-e9777bba8645.png",
+      latestResults: "6, 12, 13, 20, 29",
+      nextDrawing: "TODOS OS DIAS",
+      backgroundColor: "bg-[#ffa039]",
+      route: "/play-cash5",
+    },
+    {
+      id: "fast-play",
+      name: "Fast Play",
+      logoSrc: "/lovable-uploads/a02651ec-8efc-429a-8231-5ae52f5c4af5.png",
+      latestResults: "02, 14, 26, 33, 40",
+      nextDrawing: "TODOS OS DIAS",
+      backgroundColor: "bg-[#ffa039]",
+      route: "/play-fast-play",
+    },
+  ];
+
+  const toggleGamesDropdown = () => {
+    setShowGamesDropdown(!showGamesDropdown);
   };
 
   const renderResultsTable = () => {
@@ -999,7 +1106,7 @@ const ResultsHub = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navbar />
       
       <div className="container mx-auto max-w-6xl px-4 pt-24 pb-16">
@@ -1008,35 +1115,96 @@ const ResultsHub = () => {
             <ArrowLeft className="w-5 h-5 mr-1" />
             <span>Voltar</span>
           </Button>
-          <h1 className="text-3xl font-bold text-lottery-navy">Hub de Resultados</h1>
+          <h1 className="text-3xl font-bold text-lottery-navy dark:text-white">Hub de Resultados</h1>
+        </div>
+
+        <div className="relative mb-8" ref={dropdownRef}>
+          <button
+            onClick={toggleGamesDropdown}
+            className="flex items-center justify-between w-full md:w-72 p-4 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          >
+            <div className="flex items-center">
+              <img
+                src={getGameLogoFromId(activeGame)}
+                alt={getGameNameFromId(activeGame)}
+                className="h-8 mr-2"
+              />
+              <span className="font-medium dark:text-white">{getGameNameFromId(activeGame)}</span>
+            </div>
+            <ChevronDown className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+          </button>
+
+          {showGamesDropdown && (
+            <div className="absolute mt-2 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full md:w-[820px] left-0 md:left-1/2 md:transform md:-translate-x-1/2 z-50 animate-in fade-in duration-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {lotteryGames.map((game) => (
+                  <div
+                    key={game.id}
+                    className={`${game.backgroundColor} rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200`}
+                    onClick={() => {
+                      setActiveGame(game.id);
+                      setShowGamesDropdown(false);
+                    }}
+                  >
+                    <div className="p-4 flex flex-col items-center">
+                      <img src={game.logoSrc} alt={game.name} className="h-12 w-auto mb-3" />
+                      <p className="text-sm text-black font-medium">Últimos resultados:</p>
+                      <p className="text-lg font-bold text-black mb-2">{game.latestResults}</p>
+                      <p className="text-sm text-black font-medium">{game.nextDrawing}</p>
+                      
+                      <div className="mt-3 flex flex-col space-y-2 w-full">
+                        <Link 
+                          to={`/check-numbers/${game.id}`} 
+                          className="flex items-center justify-center bg-white/20 hover:bg-white/30 text-black border border-black rounded-full px-4 py-1.5 text-sm font-medium"
+                        >
+                          <CheckCircle className="h-4 w-4 mr-1" /> Cheque seus números
+                        </Link>
+                        <Link 
+                          to={`/results-hub?game=${game.id}`} 
+                          className="flex items-center justify-center bg-white/20 hover:bg-white/30 text-black border border-black rounded-full px-4 py-1.5 text-sm font-medium"
+                        >
+                          <EyeIcon className="h-4 w-4 mr-1" /> Veja todos
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 text-center">
+                <Button className="bg-lottery-pink text-white hover:bg-lottery-pink/90 transition-colors px-6 py-3 rounded-full text-lg font-bold shadow-md">
+                  Ver todos os resultados
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
         
         <Tabs value={activeGame} onValueChange={setActiveGame} className="mb-8">
           <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-2 bg-transparent">
             <TabsTrigger 
               value="mega-millions"
-              className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 border rounded-md"
+              className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-700 border rounded-md dark:data-[state=active]:bg-blue-900 dark:data-[state=active]:text-blue-200 dark:border-gray-700"
             >
               <img src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" alt="Mega Millions" className="h-6 mr-2" />
               Mega Millions
             </TabsTrigger>
             <TabsTrigger 
               value="powerball"
-              className="data-[state=active]:bg-red-100 data-[state=active]:text-red-700 border rounded-md"
+              className="data-[state=active]:bg-red-100 data-[state=active]:text-red-700 border rounded-md dark:data-[state=active]:bg-red-900 dark:data-[state=active]:text-red-200 dark:border-gray-700"
             >
               <img src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" alt="Powerball" className="h-6 mr-2" />
               Powerball
             </TabsTrigger>
             <TabsTrigger 
               value="lucky-day"
-              className="data-[state=active]:bg-green-100 data-[state=active]:text-green-700 border rounded-md"
+              className="data-[state=active]:bg-green-100 data-[state=active]:text-green-700 border rounded-md dark:data-[state=active]:bg-green-900 dark:data-[state=active]:text-green-200 dark:border-gray-700"
             >
               <img src="/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png" alt="Lucky Day" className="h-6 mr-2" />
               Lucky Day
             </TabsTrigger>
             <TabsTrigger 
               value="pick4"
-              className="data-[state=active]:bg-cyan-100 data-[state=active]:text-cyan-700 border rounded-md"
+              className="data-[state=active]:bg-cyan-100 data-[state=active]:text-cyan-700 border rounded-md dark:data-[state=active]:bg-cyan-900 dark:data-[state=active]:text-cyan-200 dark:border-gray-700"
             >
               <img src="/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png" alt="Pick 4" className="h-6 mr-2" />
               Pick 4
@@ -1044,7 +1212,7 @@ const ResultsHub = () => {
           </TabsList>
 
           <TabsContent value={activeGame} className="mt-6">
-            <div className="bg-white rounded-lg shadow-sm border p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border dark:border-gray-700 p-6">
               <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
                 <div className="flex items-center mb-4 md:mb-0">
                   <img 
@@ -1053,18 +1221,33 @@ const ResultsHub = () => {
                     className="h-10 mr-3" 
                   />
                   <div>
-                    <h2 className="text-xl font-bold">{getGameNameFromId(activeGame)} Resultados</h2>
-                    <p className="text-sm text-gray-500">Veja os resultados mais recentes</p>
+                    <h2 className="text-xl font-bold dark:text-white">{getGameNameFromId(activeGame)} Resultados</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Veja os resultados mais recentes</p>
                   </div>
                 </div>
-                <div className="relative w-full md:w-64">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                  <input 
-                    type="text" 
-                    placeholder="Pesquisar por data..." 
-                    className="border rounded-full py-2 pl-10 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-lottery-navy/50"
-                  />
+                <div className="flex flex-col space-y-2 w-full md:w-auto md:flex-row md:space-y-0 md:space-x-2">
+                  <Link 
+                    to={`/check-numbers/${activeGame}`} 
+                    className={`flex items-center justify-center ${getGameBgColorFromId(activeGame)} text-white rounded-full px-4 py-1.5 text-sm font-medium hover:opacity-90 transition-opacity`}
+                  >
+                    <CheckCircle className="h-4 w-4 mr-1" /> Cheque seus números
+                  </Link>
+                  <Button 
+                    variant="outline" 
+                    className="flex items-center justify-center rounded-full dark:text-white dark:border-gray-600"
+                  >
+                    <EyeIcon className="h-4 w-4 mr-1" /> Veja todos
+                  </Button>
                 </div>
+              </div>
+
+              <div className="relative w-full mb-6">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                <input 
+                  type="text" 
+                  placeholder="Pesquisar por data..." 
+                  className="border dark:border-gray-700 rounded-full py-2 pl-10 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-lottery-navy/50 dark:bg-gray-700 dark:text-white"
+                />
               </div>
 
               <div className="overflow-x-auto mb-6">
@@ -1104,82 +1287,82 @@ const ResultsHub = () => {
         </Tabs>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card>
+          <Card className="dark:bg-gray-800 dark:border-gray-700">
             <CardContent className="p-6">
-              <h2 className="text-xl font-bold mb-3 flex items-center">
+              <h2 className="text-xl font-bold mb-3 flex items-center dark:text-white">
                 <CalendarDays className="mr-2 text-lottery-pink" />
                 Próximos Sorteios
               </h2>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Fique atento para nunca perder um sorteio. Confira as datas e horários dos próximos sorteios.
               </p>
               <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="flex items-center">
                     <img src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" alt="Mega Millions" className="h-6 mr-2" />
-                    <span className="font-medium">Mega Millions</span>
+                    <span className="font-medium dark:text-white">Mega Millions</span>
                   </div>
                   <div className="text-right">
-                    <span className="block font-bold">Terça-feira</span>
-                    <span className="text-sm text-gray-500">23:00</span>
+                    <span className="block font-bold dark:text-white">Terça-feira</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">23:00</span>
                   </div>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="flex items-center">
                     <img src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" alt="Powerball" className="h-6 mr-2" />
-                    <span className="font-medium">Powerball</span>
+                    <span className="font-medium dark:text-white">Powerball</span>
                   </div>
                   <div className="text-right">
-                    <span className="block font-bold">Quarta-feira</span>
-                    <span className="text-sm text-gray-500">22:30</span>
+                    <span className="block font-bold dark:text-white">Quarta-feira</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">22:30</span>
                   </div>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="flex items-center">
                     <img src="/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png" alt="Lucky Day" className="h-6 mr-2" />
-                    <span className="font-medium">Lucky Day</span>
+                    <span className="font-medium dark:text-white">Lucky Day</span>
                   </div>
                   <div className="text-right">
-                    <span className="block font-bold">Todos os dias</span>
-                    <span className="text-sm text-gray-500">19:00</span>
+                    <span className="block font-bold dark:text-white">Todos os dias</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">19:00</span>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="dark:bg-gray-800 dark:border-gray-700">
             <CardContent className="p-6">
-              <h2 className="text-xl font-bold mb-3 flex items-center">
+              <h2 className="text-xl font-bold mb-3 flex items-center dark:text-white">
                 <FileText className="mr-2 text-lottery-navy" />
                 Como Jogar
               </h2>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 Aprenda como jogar na nossa plataforma e entenda as regras básicas de cada jogo.
               </p>
               <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="flex items-center">
                     <img src="/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png" alt="Mega Millions" className="h-6 mr-2" />
-                    <span className="font-medium">Regras do Mega Millions</span>
+                    <span className="font-medium dark:text-white">Regras do Mega Millions</span>
                   </div>
                   <Button variant="ghost" size="sm">
                     <ChevronRight className="h-5 w-5" />
                   </Button>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="flex items-center">
                     <img src="/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png" alt="Powerball" className="h-6 mr-2" />
-                    <span className="font-medium">Regras do Powerball</span>
+                    <span className="font-medium dark:text-white">Regras do Powerball</span>
                   </div>
                   <Button variant="ghost" size="sm">
                     <ChevronRight className="h-5 w-5" />
                   </Button>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                   <div className="flex items-center">
                     <img src="/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png" alt="Pick 4" className="h-6 mr-2" />
-                    <span className="font-medium">Regras do Pick 4</span>
+                    <span className="font-medium dark:text-white">Regras do Pick 4</span>
                   </div>
                   <Button variant="ghost" size="sm">
                     <ChevronRight className="h-5 w-5" />
@@ -1197,4 +1380,3 @@ const ResultsHub = () => {
 };
 
 export default ResultsHub;
-
