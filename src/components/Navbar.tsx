@@ -1,15 +1,25 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingCart, Search } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "./ThemeToggle";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showGamesDropdown, setShowGamesDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,6 +38,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowGamesDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const scrollToGames = () => {
     if (isOpen) setIsOpen(false);
     
@@ -39,6 +62,10 @@ const Navbar = () => {
     } else {
       window.location.href = '/#lottery-games';
     }
+  };
+
+  const toggleGamesDropdown = () => {
+    setShowGamesDropdown(!showGamesDropdown);
   };
 
   const navigateToResultsHub = () => {
@@ -60,7 +87,66 @@ const Navbar = () => {
     window.scrollTo(0, 0);
   };
 
+  const navigateToGame = (route: string) => {
+    setShowGamesDropdown(false);
+    if (isOpen) setIsOpen(false);
+    
+    navigate(route);
+    window.scrollTo(0, 0);
+  };
+
   const navbarClasses = "fixed top-0 left-0 right-0 z-50 bg-[#1a0f36] py-3";
+
+  const lotteryGames = [
+    {
+      id: 1,
+      logoSrc: "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png",
+      amount: "344,000,000",
+      nextDrawing: "SEXTA, MAR 25",
+      backgroundColor: "bg-blue-500",
+      route: "/play-mega-millions",
+    },
+    {
+      id: 2,
+      logoSrc: "/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png",
+      amount: "444,000,000",
+      nextDrawing: "SÁBADO, MAR 22",
+      backgroundColor: "bg-[#ff5247]",
+      route: "/play-powerball",
+    },
+    {
+      id: 3,
+      logoSrc: "/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png",
+      amount: "570,000",
+      nextDrawing: "SEGUNDA, MAR 24",
+      backgroundColor: "bg-[#8CD444]",
+      route: "/play-lucky-day",
+    },
+    {
+      id: 4,
+      logoSrc: "/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png",
+      amount: "100,000",
+      nextDrawing: "SÁBADO, MAR 22",
+      backgroundColor: "bg-[#00ccc6]",
+      route: "/play-pick4",
+    },
+    {
+      id: 5,
+      logoSrc: "/lovable-uploads/c0b5f378-154f-476e-a51e-e9777bba8645.png",
+      amount: "5,000",
+      nextDrawing: "TODOS OS DIAS",
+      backgroundColor: "bg-[#ffa039]",
+      route: "/play-cash5",
+    },
+    {
+      id: 6,
+      logoSrc: "/lovable-uploads/a02651ec-8efc-429a-8231-5ae52f5c4af5.png",
+      amount: "500",
+      nextDrawing: "TODOS OS DIAS",
+      backgroundColor: "bg-[#ffa039]",
+      route: "/play-fast-play",
+    },
+  ];
 
   return (
     <header className={navbarClasses}>
@@ -76,12 +162,47 @@ const Navbar = () => {
 
           <nav className="hidden md:flex justify-center flex-grow ml-2 mr-8">
             <div className="flex items-center space-x-8">
-              <button 
-                onClick={scrollToGames}
-                className="text-white hover:text-white/80 transition-colors font-medium font-nunito"
-              >
-                Loterias
-              </button>
+              <div className="relative" ref={dropdownRef}>
+                <button 
+                  onClick={toggleGamesDropdown}
+                  className="text-white hover:text-white/80 transition-colors font-medium font-nunito flex items-center"
+                >
+                  Loterias <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                
+                {showGamesDropdown && (
+                  <div className="absolute mt-2 p-4 bg-white dark:bg-lottery-dark-card rounded-lg shadow-lg w-[800px] left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-3 gap-4">
+                      {lotteryGames.map((game) => (
+                        <div 
+                          key={game.id} 
+                          className={`${game.backgroundColor} rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200`}
+                          onClick={() => navigateToGame(game.route)}
+                        >
+                          <div className="p-3 flex flex-col items-center">
+                            <img src={game.logoSrc} alt={`Game ${game.id}`} className="h-10 w-auto mb-2" />
+                            <p className="text-2xl font-bold text-white">${game.amount}</p>
+                            <p className="text-xs text-white mt-1">{game.nextDrawing}</p>
+                            <button className="mt-2 bg-transparent hover:bg-black/10 text-white border border-white rounded-full px-4 py-1 text-sm">
+                              JOGAR
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4 text-center">
+                      <Link 
+                        to="/#lottery-games" 
+                        onClick={() => {setShowGamesDropdown(false); scrollToGames();}}
+                        className="text-blue-600 hover:underline font-medium"
+                      >
+                        Ver todos os jogos
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <button 
                 onClick={navigateToResultsHub}
                 className="text-white hover:text-white/80 transition-colors font-medium font-nunito"
