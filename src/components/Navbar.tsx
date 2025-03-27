@@ -171,30 +171,30 @@ const Navbar = () => {
                 </button>
                 
                 {showGamesDropdown && (
-                  <div className="absolute mt-2 p-4 bg-white dark:bg-lottery-dark-card rounded-lg shadow-lg w-[800px] left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in duration-200">
-                    <div className="grid grid-cols-3 gap-4">
+                  <div className="absolute mt-2 p-6 bg-white dark:bg-lottery-dark-card rounded-lg shadow-lg w-[820px] left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-3 gap-5">
                       {lotteryGames.map((game) => (
                         <div 
                           key={game.id} 
                           className={`${game.backgroundColor} rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200`}
                           onClick={() => navigateToGame(game.route)}
                         >
-                          <div className="p-3 flex flex-col items-center">
-                            <img src={game.logoSrc} alt={`Game ${game.id}`} className="h-10 w-auto mb-2" />
-                            <p className="text-2xl font-bold text-white">${game.amount}</p>
-                            <p className="text-xs text-white mt-1">{game.nextDrawing}</p>
-                            <button className="mt-2 bg-transparent hover:bg-black/10 text-white border border-white rounded-full px-4 py-1 text-sm">
+                          <div className="p-4 flex flex-col items-center">
+                            <img src={game.logoSrc} alt={`Game ${game.id}`} className="h-12 w-auto mb-3" />
+                            <p className="text-2xl font-bold text-black">${game.amount}</p>
+                            <p className="text-sm text-black mt-1 font-medium">{game.nextDrawing}</p>
+                            <button className="mt-3 bg-transparent hover:bg-black/10 text-black border-2 border-black rounded-full px-6 py-1.5 text-sm font-bold">
                               JOGAR
                             </button>
                           </div>
                         </div>
                       ))}
                     </div>
-                    <div className="mt-4 text-center">
+                    <div className="mt-6 text-center">
                       <Link 
                         to="/#lottery-games" 
                         onClick={() => {setShowGamesDropdown(false); scrollToGames();}}
-                        className="text-blue-600 hover:underline font-medium"
+                        className="inline-block bg-lottery-pink text-white hover:bg-lottery-pink/90 transition-colors px-6 py-3 rounded-full text-lg font-bold shadow-md"
                       >
                         Ver todos os jogos
                       </Link>
