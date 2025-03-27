@@ -203,3 +203,29 @@
 .bg-navbar {
   background-color: #1a0f36;
 }
+
+/* Additional dark mode specific styles for game pages */
+.dark .game-page {
+  background-color: #1A1F2C;
+  color: #ffffff;
+}
+
+.dark .game-card {
+  background-color: #221F26;
+  border-color: #333333;
+}
+
+.dark .number-selection-grid .number-button {
+  background-color: #222222;
+  color: #ffffff;
+  border-color: #333333;
+}
+
+.dark .number-selection-grid .number-button:hover {
+  background-color: #333333;
+}
+
+.dark .number-selection-grid .number-button.selected {
+  background-color: #d51a6a;
+  color: #ffffff;
+}

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -74,6 +75,8 @@ export default {
             bg: '#1A1F2C',
             card: '#221F26',
             nav: '#1a0f36',
+            content: '#2D2936',
+            border: '#333333'
           }
         }
       },
