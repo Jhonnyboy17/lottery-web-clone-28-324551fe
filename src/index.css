@@ -38,6 +38,10 @@
     
     /* Navbar dark purple background for both light and dark modes */
     --navbar-bg: 263 54% 13%;
+    
+    /* Circle colors for light mode */
+    --unselected-number-bg: #f0f0f0;
+    --unselected-number-text: #333333;
   }
 
   .dark {
@@ -73,6 +77,10 @@
     --purple-gradient-from: 270 30% 15%;
     --purple-gradient-via: 270 30% 12%;
     --purple-gradient-to: 270 30% 10%;
+    
+    /* Circle colors for dark mode - darker but not too dark */
+    --unselected-number-bg: #333333;
+    --unselected-number-text: #e0e0e0; 
   }
 }
 
@@ -211,13 +219,13 @@
 }
 
 .dark .number-selection-grid .number-button {
-  background-color: #3a3644;
-  color: #e6e6e6;
+  background-color: #333333;
+  color: #e0e0e0;
   border-color: #4a4654;
 }
 
 .dark .number-selection-grid .number-button:hover {
-  background-color: #4a4654;
+  background-color: #444444;
 }
 
 .dark .number-selection-grid .number-button.selected {

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -561,9 +562,9 @@ const PlayPage = ({
                     disabled={isRandomizing} 
                     style={{
                       alignItems: 'center',
-                      backgroundColor: isSelected ? colorValue : '#f0f0f0',
+                      backgroundColor: isSelected ? colorValue : 'var(--unselected-number-bg, #333333)',
                       borderRadius: '50%',
-                      color: isSelected ? 'white' : '#333333',
+                      color: isSelected ? 'white' : 'var(--unselected-number-text, #e0e0e0)',
                       cursor: 'pointer',
                       display: 'flex',
                       fontWeight: 700,
@@ -578,6 +579,7 @@ const PlayPage = ({
                       position: 'relative',
                       overflow: 'hidden'
                     }}
+                    className="dark:hover:bg-gray-600"
                   >
                     <span style={{
                       position: 'absolute',
@@ -629,9 +631,9 @@ const PlayPage = ({
                         disabled={isRandomizing}
                         style={{
                           alignItems: 'center',
-                          backgroundColor: isSelected ? 'rgb(245, 158, 11)' : '#f0f0f0',
+                          backgroundColor: isSelected ? 'rgb(245, 158, 11)' : 'var(--unselected-number-bg, #333333)',
                           borderRadius: '50%',
-                          color: isSelected ? 'white' : '#333333',
+                          color: isSelected ? 'white' : 'var(--unselected-number-text, #e0e0e0)',
                           cursor: 'pointer',
                           display: 'flex',
                           fontWeight: 700,
@@ -646,6 +648,7 @@ const PlayPage = ({
                           position: 'relative',
                           overflow: 'hidden'
                         }}
+                        className="dark:hover:bg-gray-600"
                       >
                         <span style={{
                           position: 'absolute',
@@ -685,24 +688,24 @@ const PlayPage = ({
             {savedLines.length === 0 && !selectedNumbers.length ? (
               <div className="mb-2">
                 <div 
-                  className="bg-white rounded p-3 flex items-center justify-between cursor-pointer hover:bg-gray-50"
+                  className="dark:bg-gray-700 dark:hover:bg-gray-600 rounded p-3 flex items-center justify-between cursor-pointer hover:bg-gray-50"
                   onClick={handleStartNewLine}
                 >
                   <div className="flex items-center">
-                    <span className="text-gray-500 font-medium w-6 mr-2">
+                    <span className="text-gray-500 dark:text-gray-400 font-medium w-6 mr-2">
                       01
                     </span>
                     {Array(maxRegularNumbers).fill(null).map((_, i) => (
                       <span 
                         key={i} 
-                        className="bg-white border border-gray-200 text-gray-600 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm mx-0.5"
+                        className="bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 text-gray-600 dark:text-gray-300 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm mx-0.5"
                       >
                         ?
                       </span>
                     ))}
                     {hasPowerball && (
                       <span 
-                        className="bg-white border border-gray-200 text-gray-600 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm ml-1"
+                        className="bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 text-gray-600 dark:text-gray-300 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm ml-1"
                       >
                         ?
                       </span>
@@ -715,11 +718,11 @@ const PlayPage = ({
                 {savedLines.map((line, index) => (
                   <div key={index} className="mb-2">
                     <div className={`rounded p-3 flex items-center justify-between cursor-pointer transition-colors ${
-                      editingLineIndex === index ? 'bg-blue-100' : 'bg-white hover:bg-gray-50'
+                      editingLineIndex === index ? 'bg-blue-100 dark:bg-blue-900/30' : 'bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'
                     }`}
                     onClick={() => handleEditLine(index)}>
                       <div className="flex items-center">
-                        <span className="text-gray-500 font-medium w-6 mr-2">
+                        <span className="text-gray-500 dark:text-gray-400 font-medium w-6 mr-2">
                           {String(index + 1).padStart(2, '0')}
                         </span>
                         {line.numbers.map((num, i) => (
@@ -742,7 +745,7 @@ const PlayPage = ({
                           e.stopPropagation();
                           handleRemoveLine(index);
                         }} 
-                        className="text-gray-400 hover:text-gray-600" 
+                        className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" 
                         disabled={isRandomizing}
                       >
                         <X size={16} />
@@ -754,18 +757,18 @@ const PlayPage = ({
                 <div className="mb-2">
                   <div 
                     className={`rounded p-3 flex items-center justify-between cursor-pointer transition-colors ${
-                      editingLineIndex === null ? 'bg-blue-100' : 'bg-white hover:bg-gray-50'
+                      editingLineIndex === null ? 'bg-blue-100 dark:bg-blue-900/30' : 'bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'
                     }`}
                     onClick={handleStartNewLine}
                   >
                     <div className="flex items-center">
-                      <span className="text-gray-500 font-medium w-6 mr-2">
+                      <span className="text-gray-500 dark:text-gray-400 font-medium w-6 mr-2">
                         {String(savedLines.length + 1).padStart(2, '0')}
                       </span>
                       {Array(maxRegularNumbers).fill(null).map((_, i) => (
                         <span 
                           key={i} 
-                          className="bg-white border border-gray-200 text-gray-600 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm mx-0.5"
+                          className="bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 text-gray-600 dark:text-gray-300 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm mx-0.5"
                         >
                           {editingLineIndex === null && selectedNumbers[i] !== undefined ? (
                             <span className="bg-blue-500 text-white w-full h-full rounded-full flex items-center justify-center" style={{ backgroundColor: colorValue }}>
@@ -776,7 +779,7 @@ const PlayPage = ({
                       ))}
                       {hasPowerball && (
                         <span 
-                          className="bg-white border border-gray-200 text-gray-600 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm ml-1"
+                          className="bg-white dark:bg-gray-600 border border-gray-200 dark:border-gray-500 text-gray-600 dark:text-gray-300 font-bold rounded-full w-10 h-10 flex items-center justify-center text-sm ml-1"
                         >
                           {editingLineIndex === null && selectedPowerball !== null ? (
                             <span className="bg-amber-500 text-white w-full h-full rounded-full flex items-center justify-center">
