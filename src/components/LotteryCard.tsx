@@ -38,23 +38,23 @@ const LotteryCard = ({
 
   return (
     <div className={`lottery-card ${backgroundColor} rounded-xl shadow-md overflow-hidden transition-all duration-300 flex flex-col h-full`}>
-      <div className="p-6 flex-grow">
+      <div className="p-8 flex-grow">
         <img
           src={logoSrc}
           alt="Lottery Game Logo"
-          className="h-16 w-auto object-contain mx-auto mb-4"
+          className="h-20 w-auto object-contain mx-auto mb-6"
         />
-        <div className="text-center flex flex-col h-28">
+        <div className="text-center flex flex-col h-36">
           <div className="flex-grow flex flex-col justify-center">
             {prefix && (
-              <p className="text-lg font-semibold text-black mb-1">
+              <p className="text-xl font-semibold text-black mb-1">
                 {prefix}
               </p>
             )}
-            <h2 className="text-5xl font-bold text-lottery-navy">
+            <h2 className="text-6xl font-bold text-lottery-navy">
               ${amount}
             </h2>
-            <p className="text-sm font-medium text-gray-700 mt-1">
+            <p className="text-sm font-medium text-gray-700 mt-2">
               (R$ {brlValue})
             </p>
             {unit && (
@@ -75,13 +75,13 @@ const LotteryCard = ({
       </div>
       
       {showPlayButton ? (
-        <div className="px-6 pb-6 mt-auto">
-          <div className="text-center mb-4 text-black">
-            <p className="font-bold">{nextDrawing}</p>
+        <div className="px-8 pb-8 mt-auto">
+          <div className="text-center mb-5 text-black">
+            <p className="font-bold text-lg">{nextDrawing}</p>
           </div>
           <Link to={route}>
             <Button 
-              className="w-full rounded-full bg-transparent hover:bg-black/10 text-black border-2 border-black"
+              className="w-full rounded-full bg-transparent hover:bg-black/10 text-black border-2 border-black py-6 text-lg font-bold"
               variant="outline"
             >
               JOGAR
