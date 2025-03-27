@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingCart, Search, ChevronDown } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, ChevronDown, CheckCircle, EyeIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -19,7 +19,9 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showGamesDropdown, setShowGamesDropdown] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [showResultsDropdown, setShowResultsDropdown] = useState(false);
+  const gamesDropdownRef = useRef<HTMLDivElement>(null);
+  const resultsDropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -40,8 +42,11 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (gamesDropdownRef.current && !gamesDropdownRef.current.contains(event.target as Node)) {
         setShowGamesDropdown(false);
+      }
+      if (resultsDropdownRef.current && !resultsDropdownRef.current.contains(event.target as Node)) {
+        setShowResultsDropdown(false);
       }
     };
 
@@ -66,6 +71,12 @@ const Navbar = () => {
 
   const toggleGamesDropdown = () => {
     setShowGamesDropdown(!showGamesDropdown);
+    setShowResultsDropdown(false);
+  };
+
+  const toggleResultsDropdown = () => {
+    setShowResultsDropdown(!showResultsDropdown);
+    setShowGamesDropdown(false);
   };
 
   const navigateToResultsHub = () => {
@@ -148,6 +159,63 @@ const Navbar = () => {
     },
   ];
 
+  const lotteryResults = [
+    {
+      id: "mega-millions",
+      name: "Mega Millions",
+      logoSrc: "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png",
+      latestResults: "15, 22, 31, 52, 57 + 2",
+      nextDrawing: "SEXTA, MAR 25",
+      backgroundColor: "bg-blue-500",
+      route: "/results-hub?game=mega-millions",
+    },
+    {
+      id: "powerball",
+      name: "Powerball",
+      logoSrc: "/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png",
+      latestResults: "8, 11, 21, 49, 59 + 15",
+      nextDrawing: "SÁBADO, MAR 22",
+      backgroundColor: "bg-[#ff5247]",
+      route: "/results-hub?game=powerball",
+    },
+    {
+      id: "lucky-day",
+      name: "Lucky Day Lotto",
+      logoSrc: "/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png",
+      latestResults: "9, 13, 16, 31, 36, 42",
+      nextDrawing: "SEGUNDA, MAR 24",
+      backgroundColor: "bg-[#8CD444]",
+      route: "/results-hub?game=lucky-day",
+    },
+    {
+      id: "pick4",
+      name: "Pick 4",
+      logoSrc: "/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png",
+      latestResults: "8, 18, 21, 27, 30",
+      nextDrawing: "SÁBADO, MAR 22",
+      backgroundColor: "bg-[#00ccc6]",
+      route: "/results-hub?game=pick4",
+    },
+    {
+      id: "cash5",
+      name: "Cash 5",
+      logoSrc: "/lovable-uploads/c0b5f378-154f-476e-a51e-e9777bba8645.png",
+      latestResults: "6, 12, 13, 20, 29",
+      nextDrawing: "TODOS OS DIAS",
+      backgroundColor: "bg-[#ffa039]",
+      route: "/results-hub?game=cash5",
+    },
+    {
+      id: "fast-play",
+      name: "Fast Play",
+      logoSrc: "/lovable-uploads/a02651ec-8efc-429a-8231-5ae52f5c4af5.png",
+      latestResults: "02, 14, 26, 33, 40",
+      nextDrawing: "TODOS OS DIAS",
+      backgroundColor: "bg-[#ffa039]",
+      route: "/results-hub?game=fast-play",
+    },
+  ];
+
   return (
     <header className={navbarClasses}>
       <div className="container mx-auto px-4">
@@ -162,7 +230,7 @@ const Navbar = () => {
 
           <nav className="hidden md:flex justify-center flex-grow ml-2 mr-8">
             <div className="flex items-center space-x-8">
-              <div className="relative" ref={dropdownRef}>
+              <div className="relative" ref={gamesDropdownRef}>
                 <button 
                   onClick={toggleGamesDropdown}
                   className="text-white hover:text-white/80 transition-colors font-medium font-nunito flex items-center"
@@ -203,12 +271,60 @@ const Navbar = () => {
                 )}
               </div>
               
-              <button 
-                onClick={navigateToResultsHub}
-                className="text-white hover:text-white/80 transition-colors font-medium font-nunito"
-              >
-                Resultados
-              </button>
+              <div className="relative" ref={resultsDropdownRef}>
+                <button 
+                  onClick={toggleResultsDropdown}
+                  className="text-white hover:text-white/80 transition-colors font-medium font-nunito flex items-center"
+                >
+                  Resultados <ChevronDown className="ml-1 h-4 w-4" />
+                </button>
+                
+                {showResultsDropdown && (
+                  <div className="absolute mt-2 p-6 bg-white dark:bg-lottery-dark-card rounded-lg shadow-lg w-[820px] left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in duration-200">
+                    <div className="grid grid-cols-3 gap-5">
+                      {lotteryResults.map((game) => (
+                        <div 
+                          key={game.id} 
+                          className={`${game.backgroundColor} rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200`}
+                          onClick={() => navigateToGame(game.route)}
+                        >
+                          <div className="p-4 flex flex-col items-center">
+                            <img src={game.logoSrc} alt={game.name} className="h-12 w-auto mb-3" />
+                            <p className="text-sm text-black font-medium">Últimos resultados:</p>
+                            <p className="text-lg font-bold text-black mb-2">{game.latestResults}</p>
+                            <p className="text-sm text-black font-medium">{game.nextDrawing}</p>
+                            
+                            <div className="mt-3 flex flex-col space-y-2 w-full">
+                              <Link 
+                                to={`/check-numbers/${game.id}`} 
+                                className="flex items-center justify-center bg-white/20 hover:bg-white/30 text-black border border-black rounded-full px-4 py-1.5 text-sm font-medium"
+                              >
+                                <CheckCircle className="h-4 w-4 mr-1" /> Cheque seus números
+                              </Link>
+                              <Link 
+                                to={`/results-hub?game=${game.id}`} 
+                                className="flex items-center justify-center bg-white/20 hover:bg-white/30 text-black border border-black rounded-full px-4 py-1.5 text-sm font-medium"
+                              >
+                                <EyeIcon className="h-4 w-4 mr-1" /> Veja todos
+                              </Link>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-6 text-center">
+                      <Link 
+                        to="/results-hub"
+                        onClick={() => setShowResultsDropdown(false)}
+                        className="inline-block bg-lottery-pink text-white hover:bg-lottery-pink/90 transition-colors px-6 py-3 rounded-full text-lg font-bold shadow-md"
+                      >
+                        Ver todos os resultados
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <button 
                 className="text-white hover:text-white/80 transition-colors font-medium font-nunito"
               >
