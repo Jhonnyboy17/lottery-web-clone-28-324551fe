@@ -79,10 +79,10 @@ const NumberChecker = () => {
           </h3>
           <div className="w-full">
             <Select value={dateRange} onValueChange={setDateRange}>
-              <SelectTrigger className="w-full dark:bg-gray-800 dark:text-white dark:border-gray-700">
+              <SelectTrigger className="w-full dark:bg-gray-700 dark:text-white dark:border-gray-600">
                 <SelectValue placeholder="Select date range" />
               </SelectTrigger>
-              <SelectContent className="dark:bg-gray-800 dark:text-white dark:border-gray-700">
+              <SelectContent className="dark:bg-gray-700 dark:text-white dark:border-gray-600">
                 {dateRangeOptions.map((option) => (
                   <SelectItem key={option.value} value={option.value}>
                     {option.label}
@@ -102,7 +102,7 @@ const NumberChecker = () => {
             <Button 
               onClick={handleClear} 
               variant="outline"
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 py-2 px-6"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500 py-2 px-6"
             >
               Clear Numbers
             </Button>

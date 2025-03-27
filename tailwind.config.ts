@@ -72,11 +72,11 @@ export default {
           gray: '#f6f6f7',
           navbar: '#1a0f36',
           dark: {
-            bg: '#1A1F2C',
-            card: '#221F26',
+            bg: '#221F26',
+            card: '#2D2936',
             nav: '#1a0f36',
-            content: '#2D2936',
-            border: '#333333'
+            content: '#333340',
+            border: '#444444'
           }
         }
       },
