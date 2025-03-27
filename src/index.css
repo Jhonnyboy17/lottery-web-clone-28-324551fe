@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -78,9 +79,9 @@
     --purple-gradient-via: 270 30% 12%;
     --purple-gradient-to: 270 30% 10%;
     
-    /* Circle colors for dark mode - darker but not too dark */
-    --unselected-number-bg: #333333;
-    --unselected-number-text: #e0e0e0; 
+    /* Circle colors for dark mode - using a more muted dark gray */
+    --unselected-number-bg: #2a2a2a;
+    --unselected-number-text: #d0d0d0; 
   }
 }
 
@@ -208,6 +209,7 @@
   background-color: #1a0f36;
 }
 
+/* Updated dark mode styles for all pages */
 .dark .game-page {
   background-color: #272331;
   color: #e6e6e6;
@@ -219,16 +221,204 @@
 }
 
 .dark .number-selection-grid .number-button {
-  background-color: #333333;
-  color: #e0e0e0;
-  border-color: #4a4654;
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+  border-color: #3a3644;
 }
 
 .dark .number-selection-grid .number-button:hover {
-  background-color: #444444;
+  background-color: #333333;
 }
 
 .dark .number-selection-grid .number-button.selected {
+  background-color: #d51a6a;
+  color: #ffffff;
+}
+
+/* New styles for other elements in dark mode */
+.dark .card {
+  background-color: #2D2936;
+  border-color: #3a3644;
+}
+
+.dark .result-card {
+  background-color: #2D2936;
+  border-color: #3a3644;
+}
+
+.dark .sidebar {
+  background-color: #272331;
+  border-color: #3a3644;
+}
+
+.dark .table {
+  background-color: #2D2936;
+}
+
+.dark .table th {
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+}
+
+.dark .table td {
+  border-color: #3a3644;
+}
+
+.dark .input, 
+.dark .select, 
+.dark .textarea {
+  background-color: #2a2a2a;
+  border-color: #3a3644;
+  color: #d0d0d0;
+}
+
+.dark .checkbox,
+.dark .radio {
+  background-color: #2a2a2a;
+  border-color: #3a3644;
+}
+
+.dark .pagination-button {
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+  border-color: #3a3644;
+}
+
+.dark .pagination-button:hover {
+  background-color: #333333;
+}
+
+.dark .pagination-button.active {
+  background-color: #d51a6a;
+  color: #ffffff;
+}
+
+.dark .tab {
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+}
+
+.dark .tab.active {
+  background-color: #d51a6a;
+  color: #ffffff;
+}
+
+.dark .modal-content {
+  background-color: #2D2936;
+  border-color: #3a3644;
+}
+
+.dark .tooltip {
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+  border-color: #3a3644;
+}
+
+.dark .list-item {
+  background-color: #2a2a2a;
+  border-color: #3a3644;
+}
+
+.dark .list-item:hover {
+  background-color: #333333;
+}
+
+.dark .accordion {
+  background-color: #2D2936;
+  border-color: #3a3644;
+}
+
+.dark .accordion-button {
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+}
+
+/* Specific updates for the Saved Lines section */
+.dark .bg-gray-50 {
+  background-color: #272331;
+}
+
+.dark .bg-white {
+  background-color: #2D2936;
+}
+
+.dark .bg-gray-700 {
+  background-color: #2D2936;
+}
+
+.dark .bg-gray-600 {
+  background-color: #2a2a2a;
+}
+
+.dark .text-gray-700 {
+  color: #d0d0d0;
+}
+
+.dark .text-gray-300 {
+  color: #d0d0d0;
+}
+
+.dark .border-gray-200 {
+  border-color: #3a3644;
+}
+
+.dark .border-gray-500 {
+  border-color: #3a3644;
+}
+
+.dark .hover\:bg-gray-50:hover {
+  background-color: #333333;
+}
+
+.dark .hover\:bg-gray-600:hover {
+  background-color: #333333;
+}
+
+/* Footer dark mode styles */
+.dark .text-white\/80 {
+  color: rgba(208, 208, 208, 0.8);
+}
+
+.dark .text-white\/90 {
+  color: rgba(208, 208, 208, 0.9);
+}
+
+.dark .border-white\/20 {
+  border-color: rgba(208, 208, 208, 0.2);
+}
+
+/* Results Hub dark mode */
+.dark .results-hub {
+  background-color: #272331;
+}
+
+.dark .result-number {
+  background-color: #2a2a2a;
+  color: #d0d0d0;
+  border-color: #3a3644;
+}
+
+.dark .result-date {
+  color: #a0a0a0;
+}
+
+.dark .results-filter {
+  background-color: #2D2936;
+  border-color: #3a3644;
+}
+
+/* Fast Play dark mode */
+.dark .fast-play-card {
+  background-color: #2D2936;
+  border-color: #3a3644;
+}
+
+.dark .game-option {
+  background-color: #2a2a2a;
+  border-color: #3a3644;
+}
+
+.dark .game-option.selected {
   background-color: #d51a6a;
   color: #ffffff;
 }
