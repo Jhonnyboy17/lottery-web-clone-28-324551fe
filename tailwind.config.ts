@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -72,11 +71,11 @@ export default {
           gray: '#f6f6f7',
           navbar: '#1a0f36',
           dark: {
-            bg: '#221F26',
+            bg: '#272331',
             card: '#2D2936',
             nav: '#1a0f36',
-            content: '#333340',
-            border: '#444444'
+            content: '#383844',
+            border: '#4a4654'
           }
         }
       },

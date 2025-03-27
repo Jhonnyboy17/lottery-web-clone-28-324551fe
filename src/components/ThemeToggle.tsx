@@ -37,9 +37,9 @@ export const ThemeToggle = () => {
       <Switch 
         checked={isDarkMode} 
         onCheckedChange={toggleTheme} 
-        className={`${isDarkMode ? 'bg-purple-600' : 'bg-gray-200'}`}
+        className={`${isDarkMode ? 'bg-purple-500' : 'bg-gray-200'}`}
       />
-      <Moon className="h-4 w-4 text-gray-400" />
+      <Moon className="h-4 w-4 text-gray-400 dark:text-gray-300" />
     </div>
   );
 };
