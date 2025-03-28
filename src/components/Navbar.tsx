@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart, Search, ChevronDown, CheckCircle, EyeIcon } from "lucide-react";
@@ -312,13 +311,24 @@ const Navbar = () => {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-6 text-center">
-                      <Link 
-                        to="/results-hub"
-                        onClick={() => setShowResultsDropdown(false)}
-                        className="inline-block bg-lottery-pink text-white hover:bg-lottery-pink/90 transition-colors px-6 py-3 rounded-full text-lg font-bold shadow-md"
-                      >
-                        Ver todos os resultados
+                    <div className="flex justify-center gap-4 mt-6">
+                      <Link to="/results-hub">
+                        <Button 
+                          size="sm" 
+                          variant="default" 
+                          className="text-white bg-lottery-pink hover:bg-lottery-pink/90 dark:bg-lottery-pink dark:hover:bg-lottery-pink/90 rounded-full"
+                        >
+                          Ver todos os resultados
+                        </Button>
+                      </Link>
+                      <Link to="/#number-checker">
+                        <Button 
+                          size="sm" 
+                          variant="outline" 
+                          className="border-lottery-pink text-lottery-pink hover:bg-lottery-pink/10 dark:border-lottery-pink dark:text-lottery-pink dark:hover:bg-lottery-pink/10 rounded-full"
+                        >
+                          Cheque seus números
+                        </Button>
                       </Link>
                     </div>
                   </div>

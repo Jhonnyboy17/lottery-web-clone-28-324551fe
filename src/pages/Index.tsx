@@ -157,7 +157,7 @@ const Index = () => {
           <UpcomingDraws />
         </section>
 
-        <section className="container mx-auto px-4 py-12">
+        <section id="number-checker" className="container mx-auto px-4 py-12">
           <NumberChecker />
         </section>
       </main>
