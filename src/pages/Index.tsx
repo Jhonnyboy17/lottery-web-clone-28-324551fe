@@ -7,7 +7,8 @@ import NumbersDisplay from "@/components/NumbersDisplay";
 import NumberChecker from "@/components/NumberChecker";
 import Footer from "@/components/Footer";
 import UpcomingDraws from "@/components/UpcomingDraws";
-import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const lotteryGames = [
   {
@@ -16,7 +17,7 @@ const lotteryGames = [
     amount: "344,000,000",
     unit: "",
     cashOption: "161.5 MILLION",
-    nextDrawing: "SEXTA, MAR 25, 9:59 PM",
+    nextDrawing: "SEXTA, MAR 25",
     backgroundColor: "bg-blue-500",
     showPlayButton: true,
     route: "/play-mega-millions",
@@ -28,7 +29,7 @@ const lotteryGames = [
     amount: "444,000,000",
     unit: "",
     cashOption: "207.2 MILLION",
-    nextDrawing: "SÁBADO, MAR 22, 9:59 PM",
+    nextDrawing: "SÁBADO, MAR 22",
     backgroundColor: "bg-[#ff5247]",
     showPlayButton: true,
     route: "/play-powerball",
@@ -40,7 +41,7 @@ const lotteryGames = [
     amount: "570,000",
     unit: "",
     cashOption: "320 THOUSAND",
-    nextDrawing: "SEGUNDA, MAR 24, 9:59 PM",
+    nextDrawing: "SEGUNDA, MAR 24",
     backgroundColor: "bg-[#8CD444]",
     showPlayButton: true,
     route: "/play-lucky-day",
@@ -52,7 +53,7 @@ const lotteryGames = [
     amount: "100,000",
     unit: "",
     prefix: "",
-    nextDrawing: "SÁBADO, MAR 22, 12:40 PM",
+    nextDrawing: "SÁBADO, MAR 22",
     backgroundColor: "bg-[#00ccc6]",
     showPlayButton: true,
     route: "/play-pick4",
@@ -64,7 +65,7 @@ const lotteryGames = [
     amount: "5,000",
     unit: "",
     prefix: "WIN UP TO",
-    nextDrawing: "TODOS OS DIAS 12:40 PM & 9:22 PM",
+    nextDrawing: "TODOS OS DIAS",
     backgroundColor: "bg-[#ffa039]",
     showPlayButton: true,
     route: "/play-cash5",
@@ -76,7 +77,7 @@ const lotteryGames = [
     amount: "500",
     unit: "",
     prefix: "WIN UP TO",
-    nextDrawing: "TODOS OS DIAS 12:40 PM & 9:22 PM",
+    nextDrawing: "TODOS OS DIAS",
     backgroundColor: "bg-[#ffa039]",
     showPlayButton: true,
     route: "/play-fast-play",
@@ -122,29 +123,47 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50 dark:bg-lottery-dark-bg transition-colors duration-300">
       <Navbar />
 
-      <main className="pt-20">
-        <section className="container mx-auto px-4 py-6">
-          <Hero />
+      <main className="pt-16">
+        {/* Full-width lottery games section with larger cards */}
+        <section 
+          id="lottery-games" 
+          className="w-full bg-[#1A1F2C] dark:bg-lottery-dark-bg py-10 px-4 sm:px-6 md:px-8 lg:px-10"
+        >
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-white mb-8">Loterias</h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {lotteryGames.slice(0, 6).map((game) => (
+                <LotteryCard
+                  key={game.id}
+                  logoSrc={game.logoSrc}
+                  amount={game.amount}
+                  unit={game.unit || ""}
+                  prefix={game.prefix || ""}
+                  cashOption={game.cashOption || ""}
+                  nextDrawing={game.nextDrawing}
+                  backgroundColor={game.backgroundColor}
+                  showPlayButton={game.showPlayButton}
+                  route={game.route}
+                  isProminent={true}
+                />
+              ))}
+            </div>
+            
+            <div className="mt-8 text-center">
+              <Link to="/results-hub">
+                <Button 
+                  className="bg-lottery-pink hover:bg-lottery-pink/90 text-white px-8 py-3 rounded-full text-lg"
+                >
+                  Ver todos os jogos
+                </Button>
+              </Link>
+            </div>
+          </div>
         </section>
 
-        <section id="lottery-games" className="container mx-auto px-4 py-12">
-          <h2 className="text-3xl font-bold text-center text-lottery-navy dark:text-white mb-8">Loterias</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {lotteryGames.map((game) => (
-              <LotteryCard
-                key={game.id}
-                logoSrc={game.logoSrc}
-                amount={game.amount}
-                unit={game.unit || ""}
-                prefix={game.prefix || ""}
-                cashOption={game.cashOption || ""}
-                nextDrawing={game.nextDrawing}
-                backgroundColor={game.backgroundColor}
-                showPlayButton={game.showPlayButton}
-                route={game.route}
-              />
-            ))}
-          </div>
+        <section className="container mx-auto px-4 py-6">
+          <Hero />
         </section>
 
         <section className="container mx-auto px-4 py-12 bg-gray-50 dark:bg-lottery-dark-bg">
