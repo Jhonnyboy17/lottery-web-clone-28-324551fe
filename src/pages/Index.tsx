@@ -149,11 +149,7 @@ const Index = () => {
 
         <section className="container mx-auto px-4 py-12 bg-gray-50 dark:bg-lottery-dark-bg">
           <div className="bg-white dark:bg-lottery-dark-card rounded-xl shadow-md p-8">
-            <h3 className="text-2xl font-bold text-center text-lottery-navy dark:text-white mb-6">Últimos Resultados</h3>
-            <NumbersDisplay 
-              selectedNumbers={[7, 15, 23, 36, 41]} 
-              powerNumber={12}
-            />
+            <NumbersDisplay />
           </div>
         </section>
 

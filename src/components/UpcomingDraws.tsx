@@ -3,7 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import NumbersCircle from "./NumbersCircle";
 
 type UpcomingDraw = {
   id: number;

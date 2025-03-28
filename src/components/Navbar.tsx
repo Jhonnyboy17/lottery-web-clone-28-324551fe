@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart, Search, ChevronDown, CheckCircle, EyeIcon } from "lucide-react";
@@ -5,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import ThemeToggle from "./ThemeToggle";
-import NumbersCircle from "./NumbersCircle";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -100,7 +100,6 @@ const Navbar = () => {
 
   const navigateToGame = (route: string) => {
     setShowGamesDropdown(false);
-    setShowResultsDropdown(false);
     if (isOpen) setIsOpen(false);
     
     navigate(route);
@@ -165,68 +164,54 @@ const Navbar = () => {
       id: "mega-millions",
       name: "Mega Millions",
       logoSrc: "/lovable-uploads/bc3feaa6-86f8-46cb-b245-5467ab0e5fb4.png",
-      numbers: ["15", "22", "31", "52", "57"],
-      powerball: "2",
+      latestResults: "15, 22, 31, 52, 57 + 2",
       nextDrawing: "SEXTA, MAR 25",
       backgroundColor: "bg-blue-500",
-      circleColor: "bg-white/20",
-      textColor: "text-black",
       route: "/results-hub?game=mega-millions",
     },
     {
       id: "powerball",
       name: "Powerball",
       logoSrc: "/lovable-uploads/96757871-5a04-478f-992a-0eca87ef37b8.png",
-      numbers: ["8", "11", "21", "49", "59"],
-      powerball: "15",
+      latestResults: "8, 11, 21, 49, 59 + 15",
       nextDrawing: "SÁBADO, MAR 22",
       backgroundColor: "bg-[#ff5247]",
-      circleColor: "bg-white/20",
-      textColor: "text-black",
       route: "/results-hub?game=powerball",
     },
     {
       id: "lucky-day",
       name: "Lucky Day Lotto",
       logoSrc: "/lovable-uploads/92e3bb3d-af5b-4911-9c43-7c3685a6eac3.png",
-      numbers: ["9", "13", "16", "31", "36", "42"],
+      latestResults: "9, 13, 16, 31, 36, 42",
       nextDrawing: "SEGUNDA, MAR 24",
       backgroundColor: "bg-[#8CD444]",
-      circleColor: "bg-white/20",
-      textColor: "text-black",
       route: "/results-hub?game=lucky-day",
     },
     {
       id: "pick4",
       name: "Pick 4",
       logoSrc: "/lovable-uploads/005f7e6d-9f07-4838-a80c-4ce56aec2f58.png",
-      numbers: ["8", "18", "21", "27", "30"],
+      latestResults: "8, 18, 21, 27, 30",
       nextDrawing: "SÁBADO, MAR 22",
       backgroundColor: "bg-[#00ccc6]",
-      circleColor: "bg-white/20",
-      textColor: "text-black",
       route: "/results-hub?game=pick4",
     },
     {
       id: "cash5",
       name: "Cash 5",
       logoSrc: "/lovable-uploads/c0b5f378-154f-476e-a51e-e9777bba8645.png",
-      numbers: ["6", "12", "13", "20", "29"],
+      latestResults: "6, 12, 13, 20, 29",
       nextDrawing: "TODOS OS DIAS",
       backgroundColor: "bg-[#ffa039]",
-      circleColor: "bg-white/20",
-      textColor: "text-black",
       route: "/results-hub?game=cash5",
     },
     {
       id: "fast-play",
       name: "Fast Play",
       logoSrc: "/lovable-uploads/a02651ec-8efc-429a-8231-5ae52f5c4af5.png",
-      numbers: ["02", "14", "26", "33", "40"],
+      latestResults: "02, 14, 26, 33, 40",
       nextDrawing: "TODOS OS DIAS",
       backgroundColor: "bg-[#ffa039]",
-      circleColor: "bg-white/20",
-      textColor: "text-black",
       route: "/results-hub?game=fast-play",
     },
   ];
@@ -306,14 +291,7 @@ const Navbar = () => {
                           <div className="p-4 flex flex-col items-center">
                             <img src={game.logoSrc} alt={game.name} className="h-12 w-auto mb-3" />
                             <p className="text-sm text-black font-medium">Últimos resultados:</p>
-                            <div className="py-2">
-                              <NumbersCircle 
-                                numbers={game.numbers} 
-                                powerball={game.powerball} 
-                                backgroundColor={game.circleColor}
-                                textColor={game.textColor}
-                              />
-                            </div>
+                            <p className="text-lg font-bold text-black mb-2">{game.latestResults}</p>
                             <p className="text-sm text-black font-medium">{game.nextDrawing}</p>
                             
                             <div className="mt-3 flex flex-col space-y-2 w-full">
