@@ -3,7 +3,7 @@ import React from "react";
 import NumbersCircle from "./NumbersCircle";
 
 interface NumbersDisplayProps {
-  selectedNumbers: number[];
+  selectedNumbers?: number[];
   powerNumber?: number;
   gameColor?: string;
   minNumbers?: number;
@@ -13,7 +13,7 @@ interface NumbersDisplayProps {
 }
 
 const NumbersDisplay: React.FC<NumbersDisplayProps> = ({
-  selectedNumbers,
+  selectedNumbers = [1, 2, 3, 4, 5],
   powerNumber,
   gameColor = "bg-lottery-pink",
   minNumbers = 5,
