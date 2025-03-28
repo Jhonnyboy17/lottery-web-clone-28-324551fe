@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import NumbersCircle from "./NumbersCircle";
 
 interface LotteryCardProps {
   logoSrc: string;
@@ -13,6 +14,9 @@ interface LotteryCardProps {
   backgroundColor?: string;
   showPlayButton?: boolean;
   route?: string;
+  showResults?: boolean;
+  resultNumbers?: string[];
+  powerball?: string;
 }
 
 const LotteryCard = ({
@@ -25,6 +29,9 @@ const LotteryCard = ({
   backgroundColor = "bg-white",
   showPlayButton = false,
   route = "/play-powerball",
+  showResults = false,
+  resultNumbers = [],
+  powerball,
 }: LotteryCardProps) => {
   // Calculate the approximate value in Brazilian Real (BRL)
   // Using an approximate exchange rate of 1 USD = 5.5 BRL
@@ -46,24 +53,42 @@ const LotteryCard = ({
         />
         <div className="text-center flex flex-col h-28">
           <div className="flex-grow flex flex-col justify-center">
-            {prefix && (
-              <p className="text-lg font-semibold text-black mb-1">
-                {prefix}
-              </p>
-            )}
-            <h2 className="text-5xl font-bold text-lottery-navy">
-              ${amount}
-            </h2>
-            <p className="text-sm font-medium text-gray-700 mt-1">
-              (R$ {brlValue})
-            </p>
-            {unit && (
-              <p className="text-2xl font-semibold text-lottery-navy uppercase tracking-wide mb-2">
-                {unit}
-              </p>
+            {showResults ? (
+              <>
+                <p className="text-lg font-semibold text-black mb-1">
+                  Últimos resultados:
+                </p>
+                <div className="flex justify-center my-2">
+                  <NumbersCircle 
+                    numbers={resultNumbers} 
+                    powerball={powerball} 
+                    backgroundColor="bg-white/20"
+                    textColor="text-black"
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                {prefix && (
+                  <p className="text-lg font-semibold text-black mb-1">
+                    {prefix}
+                  </p>
+                )}
+                <h2 className="text-5xl font-bold text-lottery-navy">
+                  ${amount}
+                </h2>
+                <p className="text-sm font-medium text-gray-700 mt-1">
+                  (R$ {brlValue})
+                </p>
+                {unit && (
+                  <p className="text-2xl font-semibold text-lottery-navy uppercase tracking-wide mb-2">
+                    {unit}
+                  </p>
+                )}
+              </>
             )}
           </div>
-          {cashOption && !showPlayButton && (
+          {cashOption && !showPlayButton && !showResults && (
             <div className="mt-auto">
               <p className="text-sm text-gray-600 mb-1">
                 Cash Option: ${cashOption}
