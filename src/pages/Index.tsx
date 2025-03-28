@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -7,8 +8,6 @@ import NumberChecker from "@/components/NumberChecker";
 import Footer from "@/components/Footer";
 import UpcomingDraws from "@/components/UpcomingDraws";
 import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 
 const lotteryGames = [
   {
@@ -155,29 +154,6 @@ const Index = () => {
               selectedNumbers={[7, 15, 23, 36, 41]} 
               powerNumber={12}
             />
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-              <Link to="/results-hub">
-                <Button variant="outline" className="w-full sm:w-auto rounded-full bg-lottery-pink hover:bg-lottery-pink/90 text-white border-none">
-                  Ver todos os resultados
-                </Button>
-              </Link>
-              <Link to="#number-checker">
-                <Button 
-                  variant="outline" 
-                  className="w-full sm:w-auto rounded-full bg-transparent hover:bg-black/10 text-lottery-navy dark:text-white border-2 border-lottery-navy dark:border-white"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById('number-checker');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                >
-                  Cheque seus números
-                </Button>
-              </Link>
-            </div>
           </div>
         </section>
 
@@ -185,7 +161,7 @@ const Index = () => {
           <UpcomingDraws />
         </section>
 
-        <section id="number-checker" className="container mx-auto px-4 py-12">
+        <section className="container mx-auto px-4 py-12">
           <NumberChecker />
         </section>
       </main>
