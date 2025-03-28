@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ShoppingCart, Search, ChevronDown, CheckCircle, EyeIcon } from "lucide-react";
@@ -238,33 +239,37 @@ const Navbar = () => {
                 </button>
                 
                 {showGamesDropdown && (
-                  <div className="absolute mt-2 p-6 bg-white dark:bg-lottery-dark-card rounded-lg shadow-lg w-[820px] left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in duration-200">
-                    <div className="grid grid-cols-3 gap-5">
-                      {lotteryGames.map((game) => (
-                        <div 
-                          key={game.id} 
-                          className={`${game.backgroundColor} rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200`}
-                          onClick={() => navigateToGame(game.route)}
-                        >
-                          <div className="p-4 flex flex-col items-center">
-                            <img src={game.logoSrc} alt={`Game ${game.id}`} className="h-12 w-auto mb-3" />
-                            <p className="text-2xl font-bold text-black">${game.amount}</p>
-                            <p className="text-sm text-black mt-1 font-medium">{game.nextDrawing}</p>
-                            <button className="mt-3 bg-transparent hover:bg-black/10 text-black border-2 border-black rounded-full px-6 py-1.5 text-sm font-bold">
-                              JOGAR
-                            </button>
+                  <div className="absolute mt-2 bg-white dark:bg-lottery-dark-card rounded-lg shadow-lg w-[90vw] max-w-[1200px] left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in duration-200 overflow-hidden">
+                    <div className="p-8">
+                      <div className="grid grid-cols-3 gap-6">
+                        {lotteryGames.map((game) => (
+                          <div 
+                            key={game.id} 
+                            className={`${game.backgroundColor} rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-200 shadow-lg`}
+                            onClick={() => navigateToGame(game.route)}
+                          >
+                            <div className="p-8 flex flex-col items-center">
+                              <img src={game.logoSrc} alt={`Game ${game.id}`} className="h-20 w-auto mb-6" />
+                              <p className="text-4xl font-bold text-black mb-2">${game.amount}</p>
+                              <div className="mt-3 mb-2">
+                                <p className="text-xl text-black font-medium">{game.nextDrawing}</p>
+                              </div>
+                              <button className="mt-4 bg-transparent hover:bg-black/10 text-black border-2 border-black rounded-full px-12 py-3 text-xl font-bold">
+                                JOGAR
+                              </button>
+                            </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-6 text-center">
-                      <Link 
-                        to="/#lottery-games" 
-                        onClick={() => {setShowGamesDropdown(false); scrollToGames();}}
-                        className="inline-block bg-lottery-pink text-white hover:bg-lottery-pink/90 transition-colors px-6 py-3 rounded-full text-lg font-bold shadow-md"
-                      >
-                        Ver todos os jogos
-                      </Link>
+                        ))}
+                      </div>
+                      <div className="mt-8 text-center">
+                        <Link 
+                          to="/#lottery-games" 
+                          onClick={() => {setShowGamesDropdown(false); scrollToGames();}}
+                          className="inline-block bg-lottery-pink text-white hover:bg-lottery-pink/90 transition-colors px-8 py-4 rounded-full text-xl font-bold shadow-md"
+                        >
+                          Ver todos os jogos
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 )}
